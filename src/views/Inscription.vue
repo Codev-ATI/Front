@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div id="div_main">
-            <md-card id="card_titre" class="md-accent">
+        <div id="div_main" class="div-round">
+            <md-card id="card_titre" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Inscription
                 </md-card-header>
             </md-card>
 
-            <md-card id="card_pseudo" class="md-accent">
+            <md-card id="card_pseudo" class="card-left md-accent">
                 <md-card-content>
                     <div class="md-layout div_input">
                         <md-icon class="icon">person</md-icon>
@@ -21,7 +21,7 @@
                 </md-card-content>
             </md-card>
 
-            <md-card id="card_email" class="md-accent">
+            <md-card id="card_email" class="card-right md-accent">
                 <md-card-content>
                     <div class="md-layout div_input">
                         <md-icon class="icon">email</md-icon>
@@ -35,7 +35,7 @@
                 </md-card-content>
             </md-card>
 
-            <md-card id="card_motdepasse" class="md-accent">
+            <md-card id="card_motdepasse" class="card md-accent">
                 <md-card-content>
                     <div class="md-layout div_input">
                         <md-icon class="icon">vpn_key</md-icon>
@@ -51,7 +51,7 @@
                         <md-icon class="icon">vpn_key</md-icon>
 
                         <span class="md-accent md-layout-item">
-                            Mot de passe
+                            Confirmation
                         </span>
 
                         <input type="password" class="md-layout-item input md-elevation-8" v-model="password2" />
@@ -60,12 +60,12 @@
             </md-card>
         </div>
 
-        <md-card id="div_error" class="md-primary" :style="{visibility: checkPasswords ? 'hidden' : 'visible'}">
+        <md-card id="div_error" class="div md-primary" :style="{visibility: checkPasswords ? 'hidden' : 'visible'}">
                 Mots de passe différents
         </md-card>
 
         <div id="div_button">
-            <md-button id="button_creer" class="md-accent md-raised" :disabled="!checkPage">
+            <md-button id="button_creer" class="button-round md-accent md-raised" :disabled="!checkPage">
                 Créer
             </md-button>
         </div>
@@ -102,44 +102,25 @@
 
 <style scoped lang="scss">
     @import "../assets/theme";
+    @import "../assets/global";
 
     #div_main {
         width: 60%;
         margin-left: 20%;
-
-        background-color: $primary;
-        border-radius: 20px;
+        padding-bottom: 1%;
     }
 
     #card_titre {
         margin-top: 5%;
-
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
     }
 
     #card_pseudo {
-        width: 80%;
-        margin-top: 2%;
-
-        border-bottom-right-radius: 20px;
-        border-top-right-radius: 20px;
     }
 
     #card_email {
-        width: 80%;
-        margin-left: 20%;
-        margin-top: 2%;
-
-        border-bottom-left-radius: 20px;
-        border-top-left-radius: 20px;
     }
 
     #card_motdepasse {
-        margin-top: 2%;
-
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
     }
 
     .md-title {
@@ -150,21 +131,6 @@
         width: 70%;
         text-align: center;
         margin: 2% auto auto;
-    }
-
-    .icon {
-        color: white !important;
-    }
-
-    .input {
-        border-style: none;
-        border-radius: 2px;
-        text-align: center;
-        color: $accent;
-    }
-
-    .input:focus {
-        outline: none;
     }
 
     #div_button {
@@ -180,12 +146,6 @@
 
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
-    }
-
-    #button_creer {
-        width: 20%;
-        color: white;
-        border-radius: 10px;
     }
 
 </style>

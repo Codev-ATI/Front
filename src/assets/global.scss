@@ -1,0 +1,81 @@
+@import "~vue-material/dist/theme/engine";
+
+$primary: #fed9ff;
+$accent: #9a255c;
+
+@include md-register-theme("default", (
+        primary: $primary,
+        accent: $accent
+));
+
+@import "~vue-material/dist/theme/all";
+
+//divs
+.div {
+  background-color: $primary;
+
+  &-round{
+    @extend .div;
+    border-radius: 20px;
+  }
+}
+
+//buttons
+.button {
+  width: 20%;
+  color: white;
+
+  &-round {
+    @extend .button;
+    border-radius: 10px;
+  }
+}
+
+//cards
+.card {
+  width: 80%;
+  margin: 2% 10%;
+  border-radius: 20px;
+
+  &-right {
+    @extend  .card;
+    margin-right: 20%;
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &-left {
+    @extend  .card;
+    margin-left: 20%;
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-title {
+    @extend .card;
+    margin: 0;
+    width: 100%;
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+//inputs
+.input {
+  border-style: none;
+  border-radius: 2px;
+  text-align: center;
+  color: $accent;
+}
+
+.input:focus {
+  outline: none;
+}
+
+//icons
+.icon {
+  color: white !important;
+}
