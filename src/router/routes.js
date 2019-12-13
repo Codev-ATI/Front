@@ -2,6 +2,7 @@ import Home from '../views/Home.vue'
 import Inscription from "../views/Inscription";
 import VueRouter from "vue-router";
 import Connexion from "../views/Connexion";
+import QuestionSample from "../views/QuestionSample";
 
 const Routes = new VueRouter({
   routes: [
@@ -9,6 +10,7 @@ const Routes = new VueRouter({
     { path: '/home', component: Home},
     { path: '/inscription', component: Inscription},
     { path: '/connexion', component: Connexion},
+    { path: '/sample', component: QuestionSample},
    /* { path: '/creerQuestionnaire', component: CreerQuestionnaire, meta: { requiresAuth: true }}*/
   ],
 

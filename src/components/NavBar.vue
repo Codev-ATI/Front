@@ -11,6 +11,10 @@
                 </md-button>
 
                 <div class="md-toolbar-section-end md-layout-item">
+                    <md-button id="button_sample" class="md-raised" to="sample">
+                        Exemple question
+                    </md-button>
+
                     <md-button id="button_inscription" class="md-raised" to="inscription">
                         Inscription
                     </md-button>
@@ -41,6 +45,10 @@
 
         margin-left: 10%;
         margin-right: 10%;
+    }
+
+    #button_sample {
+        background-color: darkslateblue;
     }
 
     #button_inscription {
