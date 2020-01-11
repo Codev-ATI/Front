@@ -18,23 +18,7 @@ $accent: #9a255c;
     @extend .div;
     border-radius: 20px;
   }
-
-  &-question {
-    @extend .div-round;
-    width: 90%;
-    margin: 2% 5%;
-    text-align: center;
-    color: white;
-    background-color: $accent;
-    font-size: 2em;
-    padding: 4%;
-  }
-
-  &-reponse {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
+  
 }
 
 //buttons
@@ -70,6 +54,14 @@ $accent: #9a255c;
     border-bottom-right-radius: 0;
   }
 
+  &-center {
+    @extend .card;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: center;
+  }
+
   &-title {
     @extend .card;
     margin: 0;
@@ -77,17 +69,6 @@ $accent: #9a255c;
 
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-  }
-
-  &-reponse {
-    @extend .card;
-    width: 30%;
-    color: black;
-    text-align: center;
-    background-color: $primary;
-    font-size: 2em;
-    padding: 4%;
-    cursor: pointer;
   }
 }
 

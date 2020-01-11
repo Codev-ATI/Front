@@ -8,6 +8,9 @@ import './assets/theme.scss'
 import Router from './router/routes'
 import VueRouter from "vue-router";
 
+import EventBus from './EventBus'
+Vue.prototype.$bus = EventBus;
+
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
 

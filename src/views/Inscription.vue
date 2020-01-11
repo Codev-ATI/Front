@@ -114,15 +114,6 @@
         margin-top: 5%;
     }
 
-    #card_pseudo {
-    }
-
-    #card_email {
-    }
-
-    #card_motdepasse {
-    }
-
     .md-title {
         text-align: center;
     }

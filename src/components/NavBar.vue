@@ -1,12 +1,12 @@
 <template>
     <div>
         <md-app>
-            <md-app-toolbar class="md-primary md-layout">
-                <span class="md-title md-layout-item">
-                    Codev ATI
-                </span>
+            <md-app-toolbar id="toolbar" class="md-primary md-layout">
+                <md-button id="button_logo" class="md-raised" to="home">
+                    <img id="img_logo" src="../assets/qati_logo.png" />
+                </md-button>
 
-                <md-button id="button_rejoindre" class="md-raised md-layout-item">
+                <md-button id="button_rejoindre" class="md-raised md-layout-item" to="rejoindre">
                     Rejoindre une partie
                 </md-button>
 
@@ -38,6 +38,20 @@
 
     .md-app {
         border: 1px solid rgba(#000, .12);
+    }
+
+    #button_logo {
+        max-width: 7%;
+        height: 80%;
+        text-align: center;
+        vertical-align: middle;
+
+        background-color: saddlebrown;
+    }
+
+    #img_logo {
+        width: 100%;
+        height: 100%;
     }
 
     #button_rejoindre {
