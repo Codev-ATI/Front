@@ -11,11 +11,11 @@
         name: "Test",
         methods: {
             click() {
-                // TODO ip WebService (= ip actuelle ?)
-                var wss = new WebsocketService("demos.kaazingg.com/echo");
-
-                wss.sendMessage("Bonjour");
-
+                let ws = new WebsocketService("1", "ABC");
+                ws.observeQuizz().subscribe(value => {
+                    let questionnaire = value
+                    console.log(questionnaire)
+                })
             }
         }
     }
