@@ -2,15 +2,17 @@
     <div>
         <md-app>
             <md-app-toolbar id="toolbar" class="md-primary md-layout">
-                <md-button id="button_logo" class="md-raised" to="home">
-                    <img id="img_logo" src="../assets/qati_logo.png" />
-                </md-button>
+                <div class="md-layout-item md-size-33">
+                    <md-button id="button_logo" class="md-raised" to="home">
+                      <img id="img_logo" src="../assets/qati_logo.png" />
+                    </md-button>
+                </div>
 
                 <md-button id="button_rejoindre" class="md-raised md-layout-item" to="rejoindre">
-                    Rejoindre une partie
+                    Jouer !
                 </md-button>
 
-                <div class="md-toolbar-section-end md-layout-item">
+                <div class="md-toolbar-section-end md-layout-item md-size-33">
                     <md-button id="button_sample" class="md-raised" to="sample">
                         Exemple question
                     </md-button>
@@ -41,24 +43,19 @@
     }
 
     #button_logo {
-        max-width: 7%;
-        height: 80%;
         text-align: center;
         vertical-align: middle;
+        width: 25%;
+        height: 40%;
 
         background-color: saddlebrown;
-    }
-
-    #img_logo {
-        width: 100%;
-        height: 100%;
     }
 
     #button_rejoindre {
         background-color: fuchsia;
 
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
     #button_sample {

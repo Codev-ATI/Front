@@ -18,13 +18,27 @@
             </md-card-content>
         </md-card>
 
-        <EditeurResponse v-for="reponse in reponses" v-bind:key="reponse" :id="reponse">
+        <md-card class="md-primary card">
+            <md-card-header>
+                Réponses :
+            </md-card-header>
 
-        </EditeurResponse>
+            <md-card-content>
+                <EditeurResponse id="correct_response" index="correct_response" :correct="true" />
 
-        <div id="div_add">
-            <md-button class="md-fab" @click="ajouterReponse">
-                <md-icon>add</md-icon>
+                <EditeurResponse v-for="reponse in reponses" v-bind:key="reponse" :index="reponse" :correct='false' />
+
+                <div id="div_add" v-if="reponses.length < 5">
+                    <md-button class="md-fab" @click="ajouterReponse">
+                        <md-icon>add</md-icon>
+                    </md-button>
+                </div>
+            </md-card-content>
+        </md-card>
+
+        <div id="div_valider">
+            <md-button id="button_valider" class="md-raised md-accent" @click="isValid">
+                Valider
             </md-button>
         </div>
     </div>
@@ -37,19 +51,34 @@
         name: "Editeur",
         components: {EditeurResponse},
         mounted () {
-            this.$bus.$on("removeReponse", (id) => {
-                this.reponses.splice(this.reponses.indexOf(id), 1)
+            this.$bus.$on("removeReponse", (index) => {
+                this.reponses.splice(this.reponses.indexOf(index), 1)
             });
         },
         data: () => ({
             question: null,
+            answere: null,
             reponses: [],
-            index: 0
+            inc: 0
         }),
         methods: {
             ajouterReponse() {
-                this.reponses.push(this.index);
-                this.index++;
+                this.reponses.push('response' + this.inc);
+                this.inc++;
+            },
+            isValid() {
+
+                this.answere = document.getElementById("correct_response");
+                console.log("hehe");
+                if (this.answere == null) return false;
+                console.log(this.answere);
+                if (!this.answere.isValid()) return false;
+
+                for (let rep in this.reponses) {
+                    if (!rep.isValid()) return false;
+                }
+
+                return true;
             }
         }
     }
@@ -99,6 +128,11 @@
 
     #div_add {
         text-align: center;
+    }
+
+    #div_valider {
+        text-align: center;
+        margin: auto;
     }
 
 </style>

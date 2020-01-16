@@ -1,16 +1,18 @@
 <template>
     <div>
-        <md-card id="main_div" class="card md-layout">
-            <div class="md-layout-item">
+        <div id="main_div" class="card md-layout" :style="{background: getColor}">
+            <div id="div_input" class="md-layout-item md-size-80">
+                <span class="helper" />
+
                 <input id="input_reponse" type="text" class="input md-elevation-8 md-title" v-model="reponse" />
             </div>
 
-            <div class="md-layout-item md-size-5">
-                <md-button id="button_clear" class="md-fab md-primary" @click="supprimer">
+            <div id="div_button" class="md-layout-item" :style="{visibility: isCorrect ? 'hidden' : 'show'}">
+                <md-button class="md-fab md-primary" @click="supprimer">
                     <md-icon>clear</md-icon>
                 </md-button>
             </div>
-        </md-card>
+        </div>
     </div>
 </template>
 
@@ -20,17 +22,38 @@
     export default {
         name: "EditeurResponse",
         props: {
-            id: {
-                type: Number,
+            index: {
+                required: true
+            },
+            correct: {
+                type: Boolean,
                 required: true
             }
         },
         data: () => ({
             reponse: null
         }),
+        computed: {
+            getColor() {
+                if (this.correct) {
+                    return "green";
+                } else {
+                    return "red";
+                }
+            },
+            isCorrect() {
+                return this.correct;
+            },
+            isValid() {
+                if (this.reponse == null) return false;
+                if (this.reponse === "") return false;
+                if (this.reponse.trim() === "") return false;
+                return true;
+            }
+        },
         methods: {
             supprimer() {
-                Vue.prototype.$bus.$emit("removeReponse", this.id);
+                Vue.prototype.$bus.$emit("removeReponse", this.index);
             }
         }
     }
@@ -41,15 +64,27 @@
     @import "../../assets/global";
 
     #main_div {
-        background-color: $accent;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #div_input {
+        margin-left: 5%;
+    }
+
+    .helper {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
     }
 
     #input_reponse {
-
+        width: 100%;
         text-align: center;
     }
 
-    #button_clear {
+    #div_button {
+        text-align: right;
     }
 
 </style>
