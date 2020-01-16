@@ -4,8 +4,9 @@ import VueRouter from "vue-router";
 import Connexion from "../views/Connexion";
 import QuestionSample from "../views/questions/QuestionSample";
 import Test from "../views/Test";
-import Rejoindre from "../views/Rejoindre";
+import Rejoindre from "../views/Jouer";
 import Editeur from "../views/creator/Editeur";
+import Creation from "../views/Creation";
 
 const Routes = new VueRouter({
   routes: [
@@ -16,7 +17,8 @@ const Routes = new VueRouter({
     { path: '/sample', component: QuestionSample},
     { path: '/test', component: Test},
     { path: '/rejoindre', component: Rejoindre},
-    { path: '/editeur', component: Editeur}
+    { path: '/editeur', component: Editeur},
+    { path: '/creation', component: Creation}
    /* { path: '/creerQuestionnaire', component: CreerQuestionnaire, meta: { requiresAuth: true }}*/
   ],
 

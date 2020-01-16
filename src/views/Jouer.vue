@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div id="div_main" class="div-round">
-            <md-card id="card_titre" class="card-title md-accent">
+        <div id="div_join" class="div-round">
+            <md-card id="card_join" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Rejoindre une partie
                 </md-card-header>
@@ -24,12 +24,31 @@
             <md-content id="card_ps" class="md-primary">
                 *L'ID de la partie est un code en 4 chiffres et lettres
             </md-content>
+
+            <div class="div_button">
+                <md-button class="button-round md-accent md-raised" :disabled="!checkPage">
+                    Rejoindre
+                </md-button>
+            </div>
         </div>
 
-        <div id="div_button">
-            <md-button id="button_connecter" class="button-round md-accent md-raised" :disabled="!checkPage">
-                Rejoindre
-            </md-button>
+
+        <div id="div_create" class="div-round">
+            <md-card id="card_create" class="card-title md-accent">
+                <md-card-header class="md-title">
+                    Créer une partie
+                </md-card-header>
+            </md-card>
+
+            <md-content id="card_create_text" class="md-primary">
+                Créez votre propre partie en choisissant parmis de nombreux quizz !
+            </md-content>
+
+            <div class="div_button">
+                <md-button class="button-round md-accent md-raised" to="creation">
+                    Créer
+                </md-button>
+            </div>
         </div>
     </div>
 </template>
@@ -54,13 +73,14 @@
     @import "../assets/theme";
     @import "../assets/global";
 
-    #div_main {
+    #div_join, #div_create {
         width: 60%;
         margin-left: 20%;
         padding-bottom: 1%;
+        margin-bottom: 3%;
     }
 
-    #card_titre {
+    #card_join {
         margin-top: 5%;
     }
 
@@ -69,7 +89,7 @@
         margin-right: 10px;
     }
 
-    .md-title {
+    #card_create_text, .md-title {
         text-align: center;
     }
 
@@ -79,9 +99,10 @@
         margin: 2% auto auto;
     }
 
-    #div_button {
+    .div_button {
         text-align: center;
-        margin-top: 5%;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
 
 </style>

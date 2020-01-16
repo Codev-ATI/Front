@@ -72,12 +72,6 @@
         margin-left: 5%;
     }
 
-    .helper {
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-    }
-
     #input_reponse {
         width: 100%;
         text-align: center;
