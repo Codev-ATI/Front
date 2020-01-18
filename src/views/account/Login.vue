@@ -55,7 +55,7 @@
     import LoadingBar from "../../components/LoadingBar";
 
     export default {
-        name: "Connexion",
+        name: "Login",
         components: {LoadingBar},
         mounted () {
           if (GameService.hasToken()) {

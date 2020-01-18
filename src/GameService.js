@@ -108,158 +108,21 @@ const SixNezService = {
         });
     },
 
-    async getFilm(id) {
-        return await axios({
-            method: "GET",
-            url: "/films/" + id,
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            }
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getPictures(ids) {
-        return await axios({
-            method: "PATCH",
-            url: "/pictures",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            },
-            data: ids
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getGenres() {
-        return await axios({
-            method: "GET",
-            url: "/genres",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            }
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getMetiers() {
-        return await axios({
-            method: "GET",
-            url: "/metiers",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            }
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getActor(id) {
-        return await axios({
-            method: "GET",
-            url: "/acteurs/" + id,
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            }
-        }).then(response => {
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getActors(pageNumber, count, metier = null) {
-        return await axios({
-            method: "GET",
-            url: "/acteurs",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            },
-            params: {
-                page: pageNumber,
-                size: count,
-                metier: metier
-            }
-        }).then(response => {
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async getFavourites(pageNumber, count) {
-        return await axios({
-            method: "GET",
-            url: "/favs",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            },
-            params: {
-                page: pageNumber,
-                size: count
-            }
-        }).then(response => {
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async addFavourite(id) {
+    async createQuiz(quiz) {
         return await axios({
             method: "POST",
-            url: "/favs",
+            url: "/createQuiz",
             headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
+                'Authorization': "Bearer " + window.localStorage.getItem("token"),
+                'Content-Type': 'application/json'
             },
-            data: {
-                id: id
-            }
-        }).then(() => {
-            return true;
+            data: quiz
+        }).then(response => {
+            //console.log(response);
+            return response.data;
         }, error => {
             console.log(error);
-            return false;
-        });
-    },
-
-    async removeFavourite(id) {
-        return await axios({
-            method: "DELETE",
-            url: "/favs",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token")
-            },
-            data: {
-                id: id
-            }
-        }).then(() => {
-            return true;
-        }, error => {
-            console.log(error);
-            return false;
+            return null;
         });
     }
 

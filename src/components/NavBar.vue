@@ -13,22 +13,26 @@
                 </md-button>
 
                 <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="!isConnected">
-                    <md-button id="button_sample" class="md-raised" to="sample">
+                    <md-button class="md-raised" to="sample">
                         Exemple question
                     </md-button>
 
-                    <md-button id="button_inscription" class="md-raised" to="register">
+                    <md-button class="md-raised md-accent" to="register">
                         Inscription
                     </md-button>
 
-                    <md-button id="button_connexion" class="md-raised" to="login">
+                    <md-button class="md-raised md-accent" to="login">
                         Connexion
                     </md-button>
                 </div>
 
                 <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="isConnected">
-                    <md-button id="button_creation" class="md-raised" to="editor">
+                    <md-button class="md-raised md-accent" to="createquiz">
                         Créer un quizz
+                    </md-button>
+
+                    <md-button class="md-raised md-accent" to="" @click="disconnect">
+                        Déconnexion
                     </md-button>
                 </div>
             </md-app-toolbar>
@@ -52,7 +56,16 @@
         },
         data: () => ({
             isConnected: GameService.hasToken()
-        })
+        }),
+        methods: {
+            disconnect() {
+                GameService.disconnect();
+
+                if (this.$router.currentRoute != "/home") {
+                    this.$router.push("/home");
+                }
+            }
+        }
     }
 </script>
 
@@ -76,22 +89,6 @@
 
         margin-left: 5%;
         margin-right: 5%;
-    }
-
-    #button_sample {
-        background-color: darkslateblue;
-    }
-
-    #button_inscription {
-        background-color: darkorchid;
-    }
-
-    #button_connexion {
-        background-color: darkmagenta;
-    }
-
-    #button_rejoindre, #button_inscription, #button_connexion, .icon {
-        color: white !important;
     }
 
     .md-title {

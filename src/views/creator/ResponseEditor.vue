@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div id="main_div" class="card md-layout" :style="{background: getColor}">
-            <div id="div_input" class="md-layout-item md-size-80">
+        <div id="main_div" class="card md-layout" :class="getClass">
+            <div id="div_input" class="md-layout-item">
                 <span class="helper" />
 
-                <input id="input_reponse" type="text" class="input md-elevation-8 md-title" v-model="reponse" />
+                <input id="input_reponse" type="text" class="input md-elevation-8 md-body-1" v-model="reponse.text" />
             </div>
 
-            <div id="div_button" class="md-layout-item" :style="{visibility: isCorrect ? 'hidden' : 'show'}">
-                <md-button class="md-fab md-primary" @click="supprimer">
-                    <md-icon>clear</md-icon>
+            <div id="div_button" class="md-layout-item md-size-10" :style="{visibility: isCorrect ? 'hidden' : 'show'}">
+                <md-button class="md-fab button_clear" @click="supprimer">
+                    <md-icon id="icon_clear">remove</md-icon>
                 </md-button>
             </div>
         </div>
@@ -18,42 +18,31 @@
 
 <script>
     import Vue from "vue";
+    import Reponse from "../../objects/Reponse";
 
     export default {
-        name: "EditeurResponse",
+        name: "ResponseEditor",
         props: {
-            index: {
-                required: true
-            },
-            correct: {
-                type: Boolean,
-                required: true
-            }
+           reponse: {
+               required: true,
+               type: Reponse
+           }
         },
-        data: () => ({
-            reponse: null
-        }),
         computed: {
-            getColor() {
-                if (this.correct) {
-                    return "green";
+            getClass() {
+                if (this.reponse.correct) {
+                    return "div_correct";
                 } else {
-                    return "red";
+                    return "div_incorrect";
                 }
             },
             isCorrect() {
-                return this.correct;
-            },
-            isValid() {
-                if (this.reponse == null) return false;
-                if (this.reponse === "") return false;
-                if (this.reponse.trim() === "") return false;
-                return true;
+                return this.reponse.correct;
             }
         },
         methods: {
             supprimer() {
-                Vue.prototype.$bus.$emit("removeReponse", this.index);
+                Vue.prototype.$bus.$emit("removeReponse", this.reponse);
             }
         }
     }
@@ -63,22 +52,48 @@
     @import "../../assets/theme";
     @import "../../assets/global";
 
+    .div_correct, .div_incorrect {
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .div_correct {
+        border-color: green;
+    }
+
+    .div_incorrect {
+        border-color: red;
+    }
+
     #main_div {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 2px;
+        margin-bottom: 0;
     }
 
     #div_input {
-        margin-left: 5%;
+        padding-top: 2px;
+        padding-bottom: 2px;
     }
 
     #input_reponse {
-        width: 100%;
+        width: 75%;
         text-align: center;
+        margin-left: 18%;
     }
 
     #div_button {
         text-align: right;
+    }
+
+    .button_clear {
+        height: 20px !important;
+        width: 20px !important;
+
+        background-color: white !important;
+    }
+
+    #icon_clear {
+        color: $accent;
     }
 
 </style>

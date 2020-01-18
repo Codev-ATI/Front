@@ -83,7 +83,7 @@
     import LoadingBar from "../../components/LoadingBar";
 
     export default {
-        name: "Inscription",
+        name: "Register",
         components: {LoadingBar},
         mounted () {
             if (GameService.hasToken()) {

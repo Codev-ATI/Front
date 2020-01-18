@@ -5,9 +5,9 @@ import Login from "../views/account/Login";
 import QuestionSample from "../views/questions/QuestionSample";
 import Test from "../views/Test";
 import PlayGame from "../views/game/JoinGame";
-import Editor from "../views/creator/Editor";
 import CreateGame from "../views/game/CreateGame";
 import GameService from "../GameService";
+import CreateQuiz from "../views/creator/CreateQuiz";
 
 const Routes = new VueRouter({
   routes: [
@@ -18,7 +18,7 @@ const Routes = new VueRouter({
     { path: '/sample', component: QuestionSample },
     { path: '/test', component: Test },
     { path: '/playgame', component: PlayGame },
-    { path: '/editor', component: Editor, meta: { requiresAuth: true }},
+    { path: '/createquiz', component: CreateQuiz, meta: { requiresAuth: true }},
     { path: '/creategame', component: CreateGame }
    /* { path: '/creerQuestionnaire', component: CreerQuestionnaire, meta: { requiresAuth: true }}*/
   ],

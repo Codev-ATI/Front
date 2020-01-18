@@ -55,7 +55,7 @@
 
 <script>
     export default {
-        name: "Rejoindre",
+        name: "JoinGame",
         data: () => ({
             id: null
         }),

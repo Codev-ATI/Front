@@ -33,7 +33,7 @@
     import GameService from "../../GameService";
 
     export default {
-        name: "Creation",
+        name: "CreateGame",
         data: () => ({
             quizzs: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"],
             page: 0
