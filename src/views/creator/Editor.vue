@@ -45,7 +45,7 @@
 </template>
 
 <script>
-    import EditeurResponse from "./EditeurResponse";
+    import EditeurResponse from "./ResponseEditor";
 
     export default {
         name: "Editeur",

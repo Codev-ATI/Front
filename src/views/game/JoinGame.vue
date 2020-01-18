@@ -45,7 +45,7 @@
             </md-content>
 
             <div class="div_button">
-                <md-button class="button-round md-accent md-raised" to="creation">
+                <md-button class="button-round md-accent md-raised" to="creategame">
                     Créer
                 </md-button>
             </div>
@@ -70,8 +70,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
-    @import "../assets/global";
+    @import "../../assets/theme";
+    @import "../../assets/global";
 
     #div_join, #div_create {
         width: 60%;

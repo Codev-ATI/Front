@@ -30,18 +30,24 @@
 </template>
 
 <script>
+    import GameService from "../../GameService";
+
     export default {
         name: "Creation",
         data: () => ({
             quizzs: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"],
             page: 0
-        })
+        }),
+        mounted: () => {
+            GameService.getGames(20, this.page, )
+
+        }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
-    @import "../assets/global";
+    @import "../../assets/theme";
+    @import "../../assets/global";
 
     #main_div {
         width: 80%;

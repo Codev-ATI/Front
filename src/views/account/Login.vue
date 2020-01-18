@@ -13,7 +13,7 @@
                         <md-icon class="icon">person</md-icon>
 
                         <span class="md-accent md-layout-item">
-                            Pseudo
+                            Adresse mail
                         </span>
 
                         <input type="text" class="md-layout-item input md-elevation-8" v-model="pseudo" />
@@ -37,19 +37,36 @@
         </div>
 
         <div id="div_button">
-            <md-button id="button_connecter" class="button-round md-accent md-raised" :disabled="!checkPage">
+            <md-button id="button_connecter" class="button-round md-accent md-raised" :disabled="!checkPage" @click="connexion">
                 Se connecter
             </md-button>
         </div>
+
+        <LoadingBar v-if="loading" />
+
+        <md-snackbar md-position="center" :md-duration="3000" :md-active.sync="showSnackbar">
+            <span id="snackbar">Identifiant ou mot de passe incorrect</span>
+        </md-snackbar>
     </div>
 </template>
 
 <script>
+    import GameService from "../../GameService";
+    import LoadingBar from "../../components/LoadingBar";
+
     export default {
         name: "Connexion",
+        components: {LoadingBar},
+        mounted () {
+          if (GameService.hasToken()) {
+              this.$router.push("/");
+          }
+        },
         data: () => ({
             pseudo: null,
-            password: null
+            password: null,
+            loading: false,
+            showSnackbar: false
         }),
         computed: {
             checkPage() {
@@ -57,13 +74,25 @@
                 if (this.password == null || this.password === "") return false
                 return true
             }
+        },
+        methods: {
+            async connexion() {
+                this.loading = true;
+
+                if ((await GameService.connect(this.pseudo, this.password)) == true) {
+                    this.$router.push("/");
+                } else {
+                    this.loading = false;
+                    this.showSnackbar = true;
+                }
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
-    @import "../assets/global";
+    @import "../../assets/theme";
+    @import "../../assets/global";
 
     #div_main {
         width: 60%;
@@ -88,6 +117,11 @@
     #div_button {
         text-align: center;
         margin-top: 5%;
+    }
+
+    #snackbar {
+        text-align: center;
+        margin: auto;
     }
 
 </style>

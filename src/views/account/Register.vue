@@ -65,21 +65,38 @@
         </md-card>
 
         <div id="div_button">
-            <md-button id="button_creer" class="button-round md-accent md-raised" :disabled="!checkPage">
+            <md-button id="button_creer" class="button-round md-accent md-raised" :disabled="!checkPage" @click="inscription">
                 Créer
             </md-button>
         </div>
+
+        <LoadingBar v-if="loading" />
+
+        <md-snackbar md-position="center" :md-duration="3000" :md-active.sync="identifiantExists">
+            <span id="snackbar">Adresse mail déjà utilisée</span>
+        </md-snackbar>
     </div>
 </template>
 
 <script>
+    import GameService from "../../GameService";
+    import LoadingBar from "../../components/LoadingBar";
+
     export default {
         name: "Inscription",
+        components: {LoadingBar},
+        mounted () {
+            if (GameService.hasToken()) {
+                this.$router.push("/");
+            }
+        },
         data: () => ({
             pseudo: null,
-            mail: null,
             password1: null,
-            password2: null
+            mail: null,
+            password2: null,
+            identifiantExists: false,
+            loading: false
         }),
         computed: {
             checkPasswords() {
@@ -96,13 +113,27 @@
                 if (this.password1 === "" || this.password2 === "") return false;
                 return this.password1 === this.password2;
             }
+        },
+        methods: {
+            async inscription() {
+                this.loading = true;
+
+                var response = await GameService.register(this.mail, this.password1);
+                if (response == true) {
+                    this.$router.push("/login");
+                } else if (response == "400") {
+                    // identifiant deja utilise
+                    this.identifiantExists = true;
+                    this.loading = false;
+                }
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
-    @import "../assets/global";
+    @import "../../assets/theme";
+    @import "../../assets/global";
 
     #div_main {
         width: 60%;
@@ -137,6 +168,11 @@
 
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
+    }
+
+    #snackbar {
+        text-align: center;
+        margin: auto;
     }
 
 </style>

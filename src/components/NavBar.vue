@@ -8,21 +8,27 @@
                     </md-button>
                 </div>
 
-                <md-button id="button_rejoindre" class="md-raised md-layout-item" to="rejoindre">
+                <md-button id="button_rejoindre" class="md-raised md-layout-item" to="playgame">
                     Jouer !
                 </md-button>
 
-                <div class="md-toolbar-section-end md-layout-item md-size-33">
+                <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="!isConnected">
                     <md-button id="button_sample" class="md-raised" to="sample">
                         Exemple question
                     </md-button>
 
-                    <md-button id="button_inscription" class="md-raised" to="inscription">
+                    <md-button id="button_inscription" class="md-raised" to="register">
                         Inscription
                     </md-button>
 
-                    <md-button id="button_connexion" class="md-raised" to="connexion">
+                    <md-button id="button_connexion" class="md-raised" to="login">
                         Connexion
+                    </md-button>
+                </div>
+
+                <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="isConnected">
+                    <md-button id="button_creation" class="md-raised" to="editor">
+                        Créer un quizz
                     </md-button>
                 </div>
             </md-app-toolbar>
@@ -31,8 +37,22 @@
 </template>
 
 <script>
+    import GameService from "../GameService";
+
     export default {
-        name: "NavBar"
+        name: "NavBar",
+        mounted () {
+            this.$bus.$on("connected", () => {
+                this.isConnected = true;
+            });
+
+            this.$bus.$on("disconnected", () => {
+                this.isConnected = false;
+            });
+        },
+        data: () => ({
+            isConnected: GameService.hasToken()
+        })
     }
 </script>
 
