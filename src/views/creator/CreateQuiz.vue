@@ -61,7 +61,6 @@
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     #content_createur {
         width: 70%;

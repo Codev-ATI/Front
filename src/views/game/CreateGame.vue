@@ -47,7 +47,6 @@
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     #main_div {
         width: 80%;

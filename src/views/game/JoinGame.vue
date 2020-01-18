@@ -26,7 +26,7 @@
             </md-content>
 
             <div class="div_button">
-                <md-button class="button-round md-accent md-raised" :disabled="!checkPage">
+                <md-button class="button-round md-accent md-raised" :disabled="!checkPage" @click="rejoindre">
                     Rejoindre
                 </md-button>
             </div>
@@ -50,6 +50,18 @@
                 </md-button>
             </div>
         </div>
+
+        <div>
+            <md-dialog-prompt
+                    :md-active.sync="showDialog"
+                    v-model="pseudo"
+                    md-title="Choississez un pseudo"
+                    md-input-maxlength="30"
+                    md-input-placeholder="Johny..."
+                    md-confirm-text="Valider"
+                    md-cancel-text="Annuler"
+                    @cancel="pseudo = null" />
+        </div>
     </div>
 </template>
 
@@ -57,7 +69,9 @@
     export default {
         name: "JoinGame",
         data: () => ({
-            id: null
+            id: null,
+            showDialog: false,
+            pseudo: null
         }),
         computed: {
             checkPage() {
@@ -65,13 +79,17 @@
 
                 return this.id.match(/[a-zA-Z0-9]{4}/);
             }
+        },
+        methods: {
+            rejoindre() {
+                this.showDialog = true
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     #div_join, #div_create {
         width: 60%;

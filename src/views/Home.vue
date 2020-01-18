@@ -30,7 +30,6 @@ export default {
 
 <style scoped lang="scss">
   @import "../assets/theme";
-  @import "../assets/global";
 
   #div_main, #div_text {
     width: 60%;

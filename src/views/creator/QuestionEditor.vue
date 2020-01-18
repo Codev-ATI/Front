@@ -59,7 +59,6 @@
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     #main_div {
         background-color: $primary;
@@ -75,7 +74,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
 
-        background-color: lightgrey;
+        background-color: $secondary;
     }
 
     #span_question {

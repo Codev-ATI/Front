@@ -50,7 +50,6 @@
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     .div_correct, .div_incorrect {
         border-width: 1px;

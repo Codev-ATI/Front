@@ -133,7 +133,6 @@
 
 <style scoped lang="scss">
     @import "../../assets/theme";
-    @import "../../assets/global";
 
     #div_main {
         width: 60%;

@@ -70,6 +70,7 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../assets/theme";
 
     .md-app {
         border: 1px solid rgba(#000, .12);
@@ -81,18 +82,14 @@
         width: 25%;
         height: 40%;
 
-        background-color: saddlebrown;
+        background-color: $accent;
     }
 
     #button_rejoindre {
-        background-color: fuchsia;
+        background-color: white;
 
         margin-left: 5%;
         margin-right: 5%;
-    }
-
-    .md-title {
-        color: blueviolet !important;
     }
 
 </style>

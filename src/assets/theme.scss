@@ -1,7 +1,10 @@
 @import "~vue-material/dist/theme/engine";
 
-$primary: #fed9ff;
-$accent: #9a255c;
+$primary: #9a2f74;
+$accent: #8b4513;
+$secondary: #c871af;
+
+@import "global";
 
 @include md-register-theme("default", (
         primary: $primary,
