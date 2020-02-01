@@ -1,18 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+Vue.prototype.host = "http://localhost:8080";
+
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
-import './assets/theme.scss'
+Vue.use(VueMaterial)
 
 import Router from './router/routes'
 import VueRouter from "vue-router";
+Vue.use(VueRouter)
 
 import EventBus from './EventBus'
 Vue.prototype.$bus = EventBus;
 
-Vue.use(VueRouter)
-Vue.use(VueMaterial)
+import axios from "axios";
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
+axios.defaults.baseURL = Vue.prototype.host;
+
 
 Vue.config.productionTip = false
 

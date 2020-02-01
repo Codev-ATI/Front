@@ -1,13 +1,9 @@
 <template>
     <div>
         <div id="main_div" class="div-round md-elevation-4">
-            <md-content id="div_list" class="md-primary md-scrollbar">
+            <md-content id="div_list" class="md-scrollbar div-round">
                 <div id="list">
-                    <md-card v-for="quizz in quizzs" :key="quizz" md-with-hover>
-                        <md-card-header>
-                            {{ quizz }}
-                        </md-card-header>
-                    </md-card>
+                    <Quiz v-for="quiz in quizs" :key="quiz.id" :quiz="quiz" />
                 </div>
             </md-content>
         </div>
@@ -30,34 +26,48 @@
 </template>
 
 <script>
-    import GameService from "../../GameService";
+    import GameService from "../../../services/GameService";
+    import Quiz from "./Quiz";
 
     export default {
         name: "CreateGame",
+        components: {Quiz},
+        async mounted() {
+            this.quizs = await GameService.getGames(this.page, 10);
+            this.$bus.$once("chooseQuiz", (quiz) => this.choose(quiz));
+        },
         data: () => ({
-            quizzs: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"],
-            page: 0
+            page: 0,
+            quizs: []
         }),
-        mounted: () => {
-            GameService.getGames(20, this.page, )
-
+        methods: {
+            choose(quiz) {
+                if (quiz != null) {
+                    this.$router.push({ name: "choosepseudo", params: { quiz: quiz } });
+                }
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../../assets/theme";
+    @import "../../../assets/theme";
 
     #main_div {
         width: 80%;
         margin-left: 10%;
         margin-top: 1%;
-        padding-top: 5px;
 
+        padding-top: 1%;
         padding-bottom: 1%;
+
+        background-color: $accent;
     }
 
     #div_list {
+        padding-left: 2px;
+        padding-right: 2px;
+
         width: 96%;
         margin-left: 2%;
 
@@ -65,6 +75,8 @@
 
         text-align: center;
         overflow: auto;
+
+        background-color: $primary;
     }
 
     #div_list::-webkit-scrollbar-thumb {
@@ -72,7 +84,7 @@
     }
 
     #div_list::-webkit-scrollbar-track {
-        background-color: $primary;
+        background-color: transparent;
     }
 
     #list {

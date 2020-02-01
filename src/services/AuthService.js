@@ -2,10 +2,6 @@ import axios from "axios";
 import {sha256} from "js-sha256";
 import Vue from 'vue';
 
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
-//axios.defaults.headers.common['']
-axios.defaults.baseURL = "http://localhost:8080";
-
 const SixNezService = {
 
     async register(login, password) {
@@ -83,47 +79,6 @@ const SixNezService = {
             window.localStorage.removeItem("token");
             Vue.prototype.$bus.$emit("disconnected");
         }
-    },
-
-    async getGames(pageNumber, count, category = null, titre = null) {
-        return await axios({
-            method: "GET",
-            url: "/films",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token"),
-                'Content-Type': 'application/json'
-            },
-            params: {
-                'page': pageNumber,
-                'size': count,
-                'genre': category,
-                'like': titre
-            }
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
-    },
-
-    async createQuiz(quiz) {
-        return await axios({
-            method: "POST",
-            url: "/createQuiz",
-            headers: {
-                'Authorization': "Bearer " + window.localStorage.getItem("token"),
-                'Content-Type': 'application/json'
-            },
-            data: quiz
-        }).then(response => {
-            //console.log(response);
-            return response.data;
-        }, error => {
-            console.log(error);
-            return null;
-        });
     }
 
 };

@@ -1,7 +1,7 @@
 <template>
     <div>
         <md-content id="content_createur" class="card md-accent md-elevation-8 md-display-1">
-            <span>Créateur de quizz</span>
+            <span>Créateur de quiz</span>
         </md-content>
 
         <md-content id="content_titre" class="card md-primary md-layout">
@@ -9,10 +9,10 @@
                 Titre
             </md-content>
 
-            <input id="input_titre" type="text" class="input md-elevation-8 md-title md-layout-item md-size-70" v-model="quizz.titre" />
+            <input id="input_titre" type="text" class="input md-elevation-8 md-title md-layout-item md-size-70" v-model="quiz.title" />
         </md-content>
 
-        <QuestionEditor class="question_editor div-round" v-for="ques in quizz.questions" :key="quizz.questions.indexOf(ques)" :question="ques" />
+        <QuestionEditor class="question_editor div-round" v-for="ques in quiz.questions" :key="quiz.questions.indexOf(ques)" :question="ques" />
 
         <div id="div_buttons" class="md-layout">
             <md-button class="md-raised md-accent md-layout-item" @click="terminer" :disabled="!isValid">
@@ -29,31 +29,31 @@
 
 <script>
     import QuestionEditor from "./QuestionEditor";
-    import Quizz from "../../objects/Quizz";
+    import Quiz from "../../objects/Quiz";
     import Question from "../../objects/Question";
-    import GameService from "../../GameService";
+    import GameService from "../../services/GameService";
 
     export default {
         name: "CreateQuiz",
         components: {QuestionEditor},
         data: () => ({
-            quizz: new Quizz()
+            quiz: new Quiz()
         }),
         computed: {
             isValid() {
-                return this.quizz.isValid();
+                return this.quiz.isValid();
             }
         },
         methods: {
             ajouterQuestion() {
-                this.quizz.questions.push(new Question());
+                this.quiz.questions.push(new Question());
             },
 
             terminer() {
-                console.log(this.quizz.toJSON());
-                console.log(JSON.stringify(this.quizz.toJSON()));
+                console.log(this.quiz.toJSON());
+                console.log(JSON.stringify(this.quiz.toJSON()));
 
-                GameService.createQuiz(JSON.stringify(this.quizz.toJSON()));
+                GameService.createQuiz(JSON.stringify(this.quiz.toJSON()));
             }
         }
     }

@@ -18,7 +18,7 @@
 
 <script>
     import Vue from "vue";
-    import Reponse from "../../objects/Reponse";
+    import Reponse from "../../objects/Response";
 
     export default {
         name: "ResponseEditor",

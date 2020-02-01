@@ -51,14 +51,14 @@
 </template>
 
 <script>
-    import GameService from "../../GameService";
     import LoadingBar from "../../components/LoadingBar";
+    import AuthService from "../../services/AuthService";
 
     export default {
         name: "Login",
         components: {LoadingBar},
         mounted () {
-          if (GameService.hasToken()) {
+          if (AuthService.hasToken()) {
               this.$router.push("/");
           }
         },
@@ -79,7 +79,7 @@
             async connexion() {
                 this.loading = true;
 
-                if ((await GameService.connect(this.pseudo, this.password)) == true) {
+                if ((await AuthService.connect(this.pseudo, this.password)) == true) {
                     this.$router.push("/");
                 } else {
                     this.loading = false;

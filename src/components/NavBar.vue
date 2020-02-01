@@ -1,6 +1,6 @@
 <template>
     <div>
-        <md-app>
+        <md-app class="md-elevation-5">
             <md-app-toolbar id="toolbar" class="md-primary md-layout">
                 <div class="md-layout-item md-size-33">
                     <md-button id="button_logo" class="md-raised" to="home">
@@ -13,10 +13,6 @@
                 </md-button>
 
                 <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="!isConnected">
-                    <md-button class="md-raised" to="sample">
-                        Exemple question
-                    </md-button>
-
                     <md-button class="md-raised md-accent" to="register">
                         Inscription
                     </md-button>
@@ -41,7 +37,7 @@
 </template>
 
 <script>
-    import GameService from "../GameService";
+    import AuthService from "../services/AuthService";
 
     export default {
         name: "NavBar",
@@ -55,11 +51,11 @@
             });
         },
         data: () => ({
-            isConnected: GameService.hasToken()
+            isConnected: AuthService.hasToken()
         }),
         methods: {
             disconnect() {
-                GameService.disconnect();
+                AuthService.disconnect();
 
                 if (this.$router.currentRoute != "/home") {
                     this.$router.push("/home");
@@ -71,10 +67,6 @@
 
 <style scoped lang="scss">
     @import "../assets/theme";
-
-    .md-app {
-        border: 1px solid rgba(#000, .12);
-    }
 
     #button_logo {
         text-align: center;

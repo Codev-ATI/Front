@@ -1,10 +1,8 @@
 @import "~vue-material/dist/theme/engine";
 
-$primary: #9a2f74;
+$primary: #ffcd75;
 $accent: #8b4513;
-$secondary: #c871af;
-
-@import "global";
+$secondary: #ce7f12;
 
 @include md-register-theme("default", (
         primary: $primary,
@@ -12,3 +10,87 @@ $secondary: #c871af;
 ));
 
 @import "~vue-material/dist/theme/all";
+
+//divs
+.div {
+  background-color: $primary;
+
+  &-round{
+    @extend .div;
+    border-radius: 20px;
+  }
+}
+
+//buttons
+.button {
+  width: 20%;
+  color: white;
+
+  &-round {
+    @extend .button;
+    border-radius: 10px;
+  }
+}
+
+//cards
+.card {
+  width: 80%;
+  margin: 2% 10%;
+  border-radius: 20px;
+
+  &-right {
+    @extend  .card;
+    margin-right: 20%;
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &-left {
+    @extend  .card;
+    margin-left: 20%;
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-center {
+    @extend .card;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: center;
+  }
+
+  &-title {
+    @extend .card;
+    margin: 0;
+    width: 100%;
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+//inputs
+.input {
+  border-style: none;
+  border-radius: 2px;
+  text-align: center;
+  color: $accent;
+}
+
+.input:focus {
+  outline: none;
+}
+
+//icons
+.icon {
+  color: white !important;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}

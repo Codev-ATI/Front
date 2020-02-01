@@ -1,6 +1,6 @@
 <template>
     <div id="div_loading">
-        <md-progress-bar md-mode="indeterminate" class="md-accent"></md-progress-bar>
+        <md-progress-bar class="md-primary" md-mode="indeterminate"></md-progress-bar>
     </div>
 </template>
 
@@ -10,7 +10,9 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    @import "../assets/theme";
+
     #div_loading {
         width: 40%;
         margin-top: 2%;

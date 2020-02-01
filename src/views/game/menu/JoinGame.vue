@@ -16,7 +16,7 @@
                             ID de partie*
                         </span>
 
-                        <input type="text" class="md-layout-item input md-elevation-8" maxlength="4" v-model="id" />
+                        <input type="text" class="md-layout-item input md-elevation-8" maxlength="4" v-model="id" style="text-transform: uppercase" />
                     </div>
                 </md-card-content>
             </md-card>
@@ -50,18 +50,6 @@
                 </md-button>
             </div>
         </div>
-
-        <div>
-            <md-dialog-prompt
-                    :md-active.sync="showDialog"
-                    v-model="pseudo"
-                    md-title="Choississez un pseudo"
-                    md-input-maxlength="30"
-                    md-input-placeholder="Johny..."
-                    md-confirm-text="Valider"
-                    md-cancel-text="Annuler"
-                    @cancel="pseudo = null" />
-        </div>
     </div>
 </template>
 
@@ -69,9 +57,7 @@
     export default {
         name: "JoinGame",
         data: () => ({
-            id: null,
-            showDialog: false,
-            pseudo: null
+            id: null
         }),
         computed: {
             checkPage() {
@@ -82,14 +68,14 @@
         },
         methods: {
             rejoindre() {
-                this.showDialog = true
+                this.$router.push({ name: "choosepseudo", params: { gameID: this.id.toUpperCase() } });
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../../assets/theme";
+    @import "../../../assets/theme";
 
     #div_join, #div_create {
         width: 60%;
@@ -121,6 +107,10 @@
         text-align: center;
         margin-top: 1%;
         margin-bottom: 1%;
+    }
+
+    .md-primary {
+        background-color: transparent !important;
     }
 
 </style>

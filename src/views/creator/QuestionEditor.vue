@@ -31,7 +31,7 @@
 <script>
     import ResponseEditor from "./ResponseEditor";
     import Question from "../../objects/Question"
-    import Reponse from "../../objects/Reponse";
+    import Reponse from "../../objects/Response";
 
     export default {
         name: "QuestionEditor",

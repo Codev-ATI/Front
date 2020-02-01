@@ -1,4 +1,4 @@
-class Reponse {
+class Response {
     constructor(correct) {
         this.text = '';
         this.correct = correct;
@@ -10,4 +10,4 @@ class Reponse {
     }
 }
 
-export default Reponse;
+export default Response;

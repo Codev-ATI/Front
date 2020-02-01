@@ -1,11 +1,13 @@
-class Quizz {
+class Quiz {
     constructor() {
-        this.titre = '';
+        this.title = '';
         this.questions = [];
+        this.owner = '';
+        this.id = null;
     }
 
     isValid() {
-        if (this.titre.trim() === "") return false;
+        if (this.title.trim() === "") return false;
         if (this.questions.length == 0) return false;
 
         let valid = true;
@@ -22,8 +24,8 @@ class Quizz {
 
     toJSON() {
         let obj = {
-            "owner": "DEFAULT",
-            "title": this.titre,
+            "owner": this.owner,
+            "title": this.title,
             "questions": []
         };
 
@@ -35,4 +37,4 @@ class Quizz {
     }
 }
 
-export default Quizz;
+export default Quiz;

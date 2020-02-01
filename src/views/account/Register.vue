@@ -79,14 +79,14 @@
 </template>
 
 <script>
-    import GameService from "../../GameService";
     import LoadingBar from "../../components/LoadingBar";
+    import AuthService from "../../services/AuthService";
 
     export default {
         name: "Register",
         components: {LoadingBar},
         mounted () {
-            if (GameService.hasToken()) {
+            if (AuthService.hasToken()) {
                 this.$router.push("/");
             }
         },
@@ -118,7 +118,7 @@
             async inscription() {
                 this.loading = true;
 
-                var response = await GameService.register(this.mail, this.password1);
+                var response = await AuthService.register(this.mail, this.password1);
                 if (response == true) {
                     this.$router.push("/login");
                 } else if (response == "400") {

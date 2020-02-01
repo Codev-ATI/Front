@@ -12,6 +12,7 @@
 <script>
   import NavBar from "./components/NavBar";
   export default {
-    components: {NavBar}
+    components: {NavBar},
+    host: "http://localhost:8080"
   }
 </script>

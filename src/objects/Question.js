@@ -1,4 +1,4 @@
-import Reponse from "./Reponse";
+import Reponse from "./Response";
 
 class Question {
     constructor() {
