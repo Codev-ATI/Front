@@ -4,6 +4,8 @@ import {Subject} from "rxjs";
 
 class WebsocketService {
 
+    userId = null
+
     quiz = new Subject();
 
     webSocket = null;
@@ -12,6 +14,7 @@ class WebsocketService {
 
     constructor(roomId, userId) {
         this.roomId = roomId;
+        this.userId = userId
 
         this.webSocket = new SockJS('http://localhost:8080/rooms');
         this.stompClient = Stomp.over(this.webSocket);
@@ -20,15 +23,13 @@ class WebsocketService {
 
             console.log('Connected');
 
-            this.stompClient.subscribe('/topic/messages', function (message) {
+            this.stompClient.subscribe('/topic/messages/' + roomId, function (message) {
                 if (this != null && message != null) {
                     this.computeMessage(JSON.parse(message.body));
                 }
             })
 
-            let message = {"roomId": roomId, "userId": userId}
-
-            this.stompClient.send("/app/rooms/join", JSON.stringify(message), {});
+            this.stompClient.send("/app/rooms/join/" + roomId, userId, {});
         })
     }
 
@@ -39,6 +40,20 @@ class WebsocketService {
     computeMessage(message) {
 
         this.quiz.next(message);
+    }
+
+    ready() {
+        this.stompClient.send("/app/rooms/ready/" + this.roomId, this.userId, {});
+    }
+
+    question1() {
+        var msg = {'pseudo': 'ABC', 'questionId': 1, 'answer': 1}
+        this.stompClient.send("/app/rooms/answer/" + this.roomId, JSON.stringify(msg), {});
+    }
+
+    question2() {
+        var msg = {'pseudo': 'ABC', 'questionId': 2, 'answer': 1}
+        this.stompClient.send("/app/rooms/answer/" + this.roomId, JSON.stringify(msg), {});
     }
 }
 
