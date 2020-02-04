@@ -4,11 +4,11 @@
             <md-card-header class="md-layout">
                 <md-content class="md-accent md-subheading md-layout-item md-size-20">
                     <span class="helper" />
-                    <span>Question : 1/5</span>
+                    <span v-if="question != null">Question : {{ question.id + 1 }}/{{ quiz.nbQuestions }}</span>
                 </md-content>
 
                 <md-content class="md-accent md-title md-layout-item md-size-60">
-                    Titre du quiz
+                    {{ quiz.title }}
                 </md-content>
 
                 <md-content class="md-layout-item md-accent md-size-5 md-subheading">
@@ -23,29 +23,43 @@
             </md-card-header>
         </md-card>
 
-        <Question :question="getQuestion" v-if="getQuestion != null" />
+        <CQuestion :question="question" v-if="question != null" />
     </div>
 </template>
 
 <script>
-    import Question from "./Question";
+    import Question from "../../../objects/Question"
     import RoomService from "../../../services/RoomService";
+    import CQuestion from "./Question";
 
     export default {
         name: "Game",
-        components: {Question},
+        components: {CQuestion},
         mounted() {
-            this.$bus.$once("onQuestion", () => {
-                // TODO
+            this.$bus.$on("onQuestion", (question) => {
+                this.question = question;
             });
+
+            this.$bus.$once("onStats", (stats) => {
+                return stats;
+               // this.$router.push({ name: "stats", params: { stats: stats } })
+            });
+
+            this.question = this.firstQuestion;
         },
+        props: {
+            firstQuestion: {
+                type: Question,
+                required: true
+            }
+        },
+        data: () => ({
+            question: null,
+            quiz: RoomService.instance.quiz
+        }),
         beforeDestroy() {
             this.$bus.$off("onQuestion");
-        },
-        computed: {
-            getQuestion() {
-                return RoomService.instance.question;
-            }
+            this.$bus.$off("onStats");
         }
     }
 </script>

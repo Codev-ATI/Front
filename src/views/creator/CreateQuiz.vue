@@ -49,11 +49,17 @@
                 this.quiz.questions.push(new Question());
             },
 
-            terminer() {
+            async terminer() {
                 console.log(this.quiz.toJSON());
                 console.log(JSON.stringify(this.quiz.toJSON()));
 
-                GameService.createQuiz(JSON.stringify(this.quiz.toJSON()));
+                let result = await GameService.createQuiz(JSON.stringify(this.quiz.toJSON()));
+
+                if (result == null) {
+                    // error
+                } else {
+                    this.$router.push("/playgame");
+                }
             }
         }
     }

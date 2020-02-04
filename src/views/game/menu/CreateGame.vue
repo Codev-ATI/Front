@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="main_div" class="div-round md-elevation-4">
+        <div id="main_div" class="div-round">
             <md-content id="div_list" class="md-scrollbar div-round">
                 <div id="list">
                     <Quiz v-for="quiz in quizs" :key="quiz.id" :quiz="quiz" />

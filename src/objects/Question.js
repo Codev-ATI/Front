@@ -29,19 +29,19 @@ class Question {
         let obj = {
             "question": this.text,
             "correct": 1,
-            "answeres": []
+            "answers": []
         };
 
-        obj.answeres.push({
+        obj.answers.push({
             "index": 1,
-            "answere": this.correctReponse.text
+            "answer": this.correctReponse.text
         });
 
         let index = 2;
         this.reponses.forEach(rep => {
-            obj.answeres.push({
+            obj.answers.push({
                 "index": index,
-                "answere": rep.text
+                "answer": rep.text
             });
 
             index++;

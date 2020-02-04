@@ -4,6 +4,7 @@ class Quiz {
         this.questions = [];
         this.owner = '';
         this.id = null;
+        this.nbQuestions = null;
     }
 
     isValid() {

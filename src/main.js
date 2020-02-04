@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-//Vue.prototype.host = "http://localhost:8080";
-Vue.prototype.host = "http://90.66.133.132:80";
+Vue.prototype.host = "http://localhost:8080";
+//Vue.prototype.host = "http://90.66.133.132:80";
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'

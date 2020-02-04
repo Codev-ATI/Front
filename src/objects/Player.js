@@ -3,6 +3,7 @@ class Player {
         this.id = '';
         this.pseudo = '';
         this.ready = false;
+        this.score = null;
     }
 }
 

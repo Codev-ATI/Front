@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div id="div_salle" class="div-round">
-            <md-card id="card_salle" class="card-title md-accent">
+        <div id="div_stats" class="div-round">
+            <md-card id="card_titre" class="card-title md-accent">
                 <md-card-header class="md-title">
-                    Salle d'attente
+                    Résultats
                 </md-card-header>
             </md-card>
 
@@ -27,21 +27,17 @@
                         <md-icon class="icon">supervisor_account</md-icon>
 
                         <span class="md-accent md-layout-item">
-                            Joueurs :
+                            Classement :
                         </span>
                     </div>
                 </md-card-header>
             </md-card>
 
             <div class="div_joueurs">
-                <Player v-for="player in players" :key="player.id" :player="player" />
+                <PlayerStat v-for="player in stats" :key="player.id" :player="player" />
             </div>
 
             <div class="div_button">
-                <md-button class="button button-round md-accent md-raised" @click="pret">
-                    Prêt !
-                </md-button>
-
                 <md-button class="button button-round md-accent md-raised" @click="quitter">
                     Quitter
                 </md-button>
@@ -51,35 +47,20 @@
 </template>
 
 <script>
-    import Player from "../menu/Player";
-    import RoomService from "../../../services/RoomService";
-
+    import PlayerStat from "./PlayerStat";
+    import Stats from "../../../objects/Stats";
     export default {
-        name: "WaitingRoom",
-        components: {Player},
-        mounted() {
-            this.$bus.$once("onQuestion", (question) => {
-                this.$router.push({ name: "game", params: { firstQuestion: question } });
-            });
-        },
-        beforeDestroy() {
-            this.$bus.$off("onQuestion");
-        },
-        data: () => ({
-            players: RoomService.instance.players
-        }),
-        computed: {
-            getRoomID() {
-                if (RoomService.instance == null || RoomService.instance.roomId == null) return null;
-                return RoomService.instance.roomId;
+        name: "Stats",
+        components: {PlayerStat},
+        props: {
+            stats: {
+                type: Stats,
+                required: true
             }
         },
         methods: {
             quitter() {
-            },
-
-            pret() {
-                RoomService.instance.setReady();
+                this.$router.push("/home");
             }
         }
     }
@@ -88,29 +69,14 @@
 <style scoped lang="scss">
     @import "../../../assets/theme";
 
-    #div_salle, #div_create {
+    #div_stats, #div_create {
         width: 60%;
         margin-left: 20%;
         padding-bottom: 1%;
         margin-bottom: 3%;
     }
 
-    #card_salle {
+    #card_titre {
         margin-top: 5%;
     }
-
-    #card_id {
-        width: 50%;
-        margin-bottom: 3%;
-    }
-
-    #card_create_text, .md-title {
-        text-align: center;
-    }
-
-    .button {
-        width: 16%;
-        margin-left: 42%;
-    }
-
 </style>

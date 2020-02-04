@@ -16,7 +16,7 @@ class WebsocketService {
     onPlayers = null;
     onQuestion = null;
     onAnswer = null;
-    onStat = null;
+    onStats = null;
 
     static async getInstance(roomId, userId) {
         if (this.instance != null && roomId == this.instance.roomId) {
@@ -58,12 +58,12 @@ class WebsocketService {
             });
 
             this.topic = this.stompClient.subscribe('/topic/answers/' + this.roomId, function (message) {
-                if (WebsocketService.instance.onAnswer != null) WebsocketService.instance.onAnswer(message);
+                if (WebsocketService.instance.onAnswer != null) WebsocketService.instance.onAnswer(JSON.parse(message.body));
                 console.log(message);
             });
 
             this.topic = this.stompClient.subscribe('/topic/stats/' + this.roomId, function (message) {
-                if (WebsocketService.instance.onStat != null) WebsocketService.instance.onStat(message);
+                if (WebsocketService.instance.onStats != null) WebsocketService.instance.onStats(JSON.parse(message.body));
                 console.log(message);
             });
 

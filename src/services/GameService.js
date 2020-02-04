@@ -30,7 +30,7 @@ const SixNezService = {
     async createQuiz(quiz) {
         return await axios({
             method: "POST",
-            url: "/createQuiz",
+            url: "/app/createQuiz",
             headers: {
                 'Authorization': "Bearer " + window.localStorage.getItem("token"),
                 'Content-Type': 'application/json'

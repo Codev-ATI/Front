@@ -1,14 +1,15 @@
 <template>
     <md-card id="card_player" class="div-round card-center">
         <md-card-header class="md-layout">
-            <md-icon v-if="player.ready" class="md-layout-item md-size-5">how_to_reg</md-icon>
-            <md-icon v-if="!player.ready" class="md-layout-item md-size-5">emoji_people</md-icon>
+            <md-icon class="md-layout-item md-size-5">grade</md-icon>
 
             <md-content id="content_pseudo" class="md-layout-item md-size-90">
                 {{ getPseudoField() }}
             </md-content>
 
-            <span class="md-layout-item md-size-5" />
+            <md-content class="md-layout-item md-size-5">
+                {{ player.score }}
+            </md-content>
         </md-card-header>
     </md-card>
 </template>
@@ -18,7 +19,7 @@
     import RoomService from "../../../services/RoomService";
 
     export default {
-        name: "Player",
+        name: "PlayerStat",
         props: {
             player: {
                 required: true,
