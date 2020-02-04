@@ -5,6 +5,7 @@ class Question {
         this.text = '';
         this.correctReponse = new Reponse(true);
         this.reponses = [];
+        this.id = null;
     }
 
     isValid() {

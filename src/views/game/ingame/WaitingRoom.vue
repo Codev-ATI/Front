@@ -38,7 +38,11 @@
             </div>
 
             <div class="div_button">
-                <md-button id="button_quitter" class="button-round md-accent md-raised" @click="quitter">
+                <md-button class="button button-round md-accent md-raised" @click="pret">
+                    Prêt !
+                </md-button>
+
+                <md-button class="button button-round md-accent md-raised" @click="quitter">
                     Quitter
                 </md-button>
             </div>
@@ -53,8 +57,16 @@
     export default {
         name: "WaitingRoom",
         components: {Player},
+        mounted() {
+            this.$bus.$once("onQuestion", () => {
+                this.$router.push("/game");
+            });
+        },
+        beforeDestroy() {
+            this.$bus.$off("onQuestion");
+        },
         data: () => ({
-            players: [ { id: 111, pseudo: "Banana !", ready: false }, { id: 112, pseudo: "Pizza ?", ready: true } ]
+            players: RoomService.instance.players
         }),
         computed: {
             getRoomID() {
@@ -63,11 +75,11 @@
             }
         },
         methods: {
-            onMessage(msg) {
-                console.log(msg);
-            },
             quitter() {
+            },
 
+            pret() {
+                RoomService.instance.setReady();
             }
         }
     }
@@ -96,8 +108,7 @@
         text-align: center;
     }
 
-    #button_quitter {
-        margin-top: 5%;
+    .button {
         width: 16%;
         margin-left: 42%;
     }

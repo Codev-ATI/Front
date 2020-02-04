@@ -9,7 +9,7 @@ const SixNezService = {
 
         return await axios({
             method: "POST",
-            url: "/register",
+            url: "/app/register",
             params: {
                 username: login,
                 password: hashedpassword
@@ -30,7 +30,7 @@ const SixNezService = {
 
         return await axios({
             method: "GET",
-            url: "/login",
+            url: "/app/login",
             params: {
                 username: login,
                 password: hashedpassword
@@ -60,6 +60,7 @@ const SixNezService = {
         var token = window.localStorage.getItem("token");
         if (token == null) return false;
 
+        /*
         return await axios({
             method: "GET",
             url: "/film",
@@ -71,7 +72,9 @@ const SixNezService = {
                 window.localStorage.removeItem("token")
                 return false
             } else return true;
-        });
+        });*/
+
+        return false;
     },
 
     disconnect() {

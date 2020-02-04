@@ -20,15 +20,12 @@
     export default {
         name: "Question",
         components: {Response},
-        mounted() {
-            this.question = new Question();
-            this.question.text = "Quelle était la couleur du cheval blanc d'Henri IV ?";
-
-            this.question.reponses = [ { text: "blanc" }, { text: "bleu" }, { text: "rouge" } ];
-        },
-        data: () => ({
-            question: null
-        })
+        props: {
+            question: {
+                type: Question,
+                required: true
+            }
+        }
     }
 </script>
 

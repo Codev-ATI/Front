@@ -36,6 +36,9 @@
             this.quizs = await GameService.getGames(this.page, 10);
             this.$bus.$once("chooseQuiz", (quiz) => this.choose(quiz));
         },
+        beforeDestroy() {
+            this.$bus.$off("chooseQuiz");
+        },
         data: () => ({
             page: 0,
             quizs: []

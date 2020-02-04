@@ -23,15 +23,30 @@
             </md-card-header>
         </md-card>
 
-        <Question />
+        <Question :question="getQuestion" v-if="getQuestion != null" />
     </div>
 </template>
 
 <script>
     import Question from "./Question";
+    import RoomService from "../../../services/RoomService";
+
     export default {
         name: "Game",
-        components: {Question}
+        components: {Question},
+        mounted() {
+            this.$bus.$once("onQuestion", () => {
+                // TODO
+            });
+        },
+        beforeDestroy() {
+            this.$bus.$off("onQuestion");
+        },
+        computed: {
+            getQuestion() {
+                return RoomService.instance.question;
+            }
+        }
     }
 </script>
 

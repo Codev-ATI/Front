@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import WebsocketService from "../WebsocketService"
+    import WebsocketService from "../services/WebsocketService"
 
     export default {
         name: "Test",
