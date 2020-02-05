@@ -3,7 +3,7 @@
         <md-app class="md-elevation-5">
             <md-app-toolbar id="toolbar" class="md-primary md-layout">
                 <div class="md-layout-item md-size-33">
-                    <md-button id="button_logo" class="md-raised" to="home">
+                    <md-button id="button_logo" to="home">
                       <img id="img_logo" src="../assets/qati_logo.png" />
                     </md-button>
                 </div>
@@ -71,10 +71,8 @@
     #button_logo {
         text-align: center;
         vertical-align: middle;
-        width: 25%;
+        width: 20%;
         height: 40%;
-
-        background-color: $accent;
     }
 
     #button_rejoindre {
