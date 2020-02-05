@@ -4,7 +4,7 @@ import Vue from 'vue';
 
 const SixNezService = {
 
-    async register(login, password) {
+    async register(login, password, pseudo) {
         var hashedpassword = sha256(password);
 
         return await axios({
@@ -12,7 +12,8 @@ const SixNezService = {
             url: "/app/register",
             params: {
                 username: login,
-                password: hashedpassword
+                password: hashedpassword,
+                pseudo: pseudo
             }
         }).then(async response => {
             // OK
@@ -38,8 +39,10 @@ const SixNezService = {
         }).then(response => {
             // OK
             if (response.status == 200) {
-                window.localStorage.setItem("token", response.data);
+                window.localStorage.setItem("token", response.data.token);
                 Vue.prototype.$bus.$emit("connected");
+
+                window.localStorage.setItem("pseudo", response.data.pseudo);
 
                 return true;
             }
@@ -54,6 +57,13 @@ const SixNezService = {
         if (token == null) return false;
 
         return true;
+    },
+
+    getPseudo() {
+        var pseudo = window.localStorage.getItem("pseudo");
+        if (pseudo == null) return null;
+
+        return pseudo;
     },
 
     async forceCheckToken() {
@@ -80,6 +90,7 @@ const SixNezService = {
     disconnect() {
         if (window.localStorage.getItem("token") != null) {
             window.localStorage.removeItem("token");
+            window.localStorage.removeItem("pseudo");
             Vue.prototype.$bus.$emit("disconnected");
         }
     }

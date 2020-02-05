@@ -47,6 +47,12 @@
                 </md-button>
             </div>
         </div>
+
+        <md-card id="div_starting" class="div-round md-accent" v-if="allReady">
+            <md-card-header>
+                Début dans {{ time }} seconde{{ time > 1 ? 's':''}}
+            </md-card-header>
+        </md-card>
     </div>
 </template>
 
@@ -61,13 +67,34 @@
             this.$bus.$once("onQuestion", (question) => {
                 this.$router.push({ name: "game", params: { firstQuestion: question } });
             });
+
+            this.$bus.$on("onPlayers", (players) => {
+                let areAllReady = true;
+                for (const pla of players) {
+                    if (!pla.ready) {
+                        areAllReady = false;
+                        break;
+                    }
+                }
+
+                this.allReady = areAllReady;
+
+                if (areAllReady) {
+                    this.timer = window.setInterval(() => { this.time-- }, 1000);
+                }
+            });
         },
         beforeDestroy() {
             this.$bus.$off("onQuestion");
+            this.$bus.$off("onPlayers");
+            window.clearInterval(this.timer);
         },
         data: () => ({
             players: RoomService.instance.players,
-            ready: false
+            ready: false,
+            allReady: false,
+            time: 3,
+            timer: null
         }),
         computed: {
             getRoomID() {
@@ -77,6 +104,8 @@
         },
         methods: {
             quitter() {
+                RoomService.instance.leaveRoom();
+                this.$router.push("/home");
             },
 
             pret() {
@@ -113,6 +142,13 @@
     .button {
         width: 16%;
         margin-left: 42%;
+    }
+
+    #div_starting {
+        margin-left: 40%;
+        width: 20%;
+
+        text-align: center;
     }
 
 </style>

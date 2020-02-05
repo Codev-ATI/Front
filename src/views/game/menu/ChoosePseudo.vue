@@ -46,14 +46,25 @@
 <script>
     import Quiz from "../../../objects/Quiz";
     import RoomService from "../../../services/RoomService";
+    import AuthService from "../../../services/AuthService";
 
     export default {
         name: "ChoosePseudo",
         mounted() {
-          // TODO si le joueur est connecté, on redirige direct
-
             if (this.gameID == null && this.quiz == null) {
                 this.$router.push('/playgame');
+            }
+
+            if (AuthService.hasToken()) {
+                this.pseudo = AuthService.getPseudo();
+
+                if (this.gameID != null) {
+                    this.rejoindre();
+                }
+
+                if (this.quiz != null) {
+                    this.creer();
+                }
             }
         },
         props: {

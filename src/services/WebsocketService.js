@@ -8,7 +8,11 @@ class WebsocketService {
 
     webSocket = null;
     stompClient = null;
-    topic = null;
+
+    topicPlayers = null;
+    topicQuestions = null;
+    topicAnswers = null;
+    topicStats = null;
 
     roomId = null;
     userId = null;
@@ -30,7 +34,11 @@ class WebsocketService {
     }
 
     close() {
-        this.stompClient.unsubscribe();
+        this.topicPlayers.unsubscribe();
+        this.topicQuestions.unsubscribe();
+        this.topicAnswers.unsubscribe();
+        this.topicStats.unsubscribe();
+
         this.stompClient.disconnect(() => {}, {});
         this.webSocket.close();
 
@@ -46,25 +54,28 @@ class WebsocketService {
         this.webSocket = await new SockJS(Vue.prototype.host + "/rooms/");
         this.stompClient = await Stomp.over(this.webSocket);
 
+        // pour desactiver les logs, par defaut elles sont actives
+        this.stompClient.debug = () => {};
+
         this.stompClient.connect({}, () => {
-            this.topic = this.stompClient.subscribe('/topic/players/' + this.roomId, function (message) {
+            this.topicPlayers = this.stompClient.subscribe('/topic/players/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onPlayers != null) WebsocketService.instance.onPlayers(JSON.parse(message.body));
                 //console.log(message);
             });
 
-            this.topic = this.stompClient.subscribe('/topic/questions/' + this.roomId, function (message) {
+            this.topicQuestions = this.stompClient.subscribe('/topic/questions/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onQuestion != null) WebsocketService.instance.onQuestion(JSON.parse(message.body));
                 //console.log(message);
             });
 
-            this.topic = this.stompClient.subscribe('/topic/answers/' + this.roomId, function (message) {
+            this.topicAnswers = this.stompClient.subscribe('/topic/answers/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onAnswer != null) WebsocketService.instance.onAnswer(JSON.parse(message.body));
                 //console.log(message);
             });
 
-            this.topic = this.stompClient.subscribe('/topic/stats/' + this.roomId, function (message) {
+            this.topicStats = this.stompClient.subscribe('/topic/stats/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onStats != null) WebsocketService.instance.onStats(JSON.parse(message.body));
-                console.log(message);
+                //console.log(message);
             });
 
             this.getPlayersStatus();
@@ -81,6 +92,10 @@ class WebsocketService {
 
     sendResponse(questionId, responseId) {
         this.stompClient.send("/app/rooms/answer/" + this.roomId, JSON.stringify({ id: this.userId, questionId: questionId, answer: responseId }), {});
+    }
+
+    sendQuit() {
+        this.stompClient.send("/app/rooms/quit/" + this.roomId, this.userId, {});
     }
 }
 

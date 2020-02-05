@@ -118,7 +118,7 @@
             async inscription() {
                 this.loading = true;
 
-                var response = await AuthService.register(this.mail, this.password1);
+                var response = await AuthService.register(this.mail, this.password1, this.pseudo);
                 if (response == true) {
                     this.$router.push("/login");
                 } else if (response == "400") {

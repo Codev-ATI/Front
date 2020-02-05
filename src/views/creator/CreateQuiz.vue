@@ -32,6 +32,7 @@
     import Quiz from "../../objects/Quiz";
     import Question from "../../objects/Question";
     import GameService from "../../services/GameService";
+    import AuthService from "../../services/AuthService";
 
     export default {
         name: "CreateQuiz",
@@ -52,6 +53,8 @@
             async terminer() {
                 console.log(this.quiz.toJSON());
                 console.log(JSON.stringify(this.quiz.toJSON()));
+
+                this.quiz.owner = AuthService.getPseudo();
 
                 let result = await GameService.createQuiz(JSON.stringify(this.quiz.toJSON()));
 

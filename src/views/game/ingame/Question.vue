@@ -7,19 +7,19 @@
         </md-card>
 
         <div class="md-layout">
-            <Response v-for="response in question.reponses" :key="question.id + '_' + response.id" :response="response" class="md-layout-item" />
+            <CResponse v-for="response in question.reponses" :key="question.id + '_' + response.id" :response="response" class="md-layout-item" />
         </div>
     </div>
 </template>
 
 
 <script>
-    import Response from "./Response"
+    import CResponse from "./Response"
     import Question from "../../../objects/Question";
 
     export default {
         name: "Question",
-        components: {Response},
+        components: {CResponse},
         props: {
             question: {
                 type: Question,

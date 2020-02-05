@@ -76,6 +76,8 @@ class RoomService {
             pla = Object.assign(pla, player);
             RoomService.instance.players.push(pla);
         }
+
+        Vue.prototype.$bus.$emit("onPlayers", RoomService.instance.players);
     }
 
     static onQuestion(message) {
@@ -116,6 +118,11 @@ class RoomService {
 
     sendResponse(questionId, responseId) {
         WebsocketService.instance.sendResponse(questionId, responseId);
+    }
+
+    leaveRoom() {
+        WebsocketService.instance.sendQuit();
+        RoomService.disconnect();
     }
 }
 

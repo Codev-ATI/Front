@@ -7,13 +7,13 @@
 </template>
 
 <script>
-    import "../../../objects/Response"
+    import OResponse from "../../../objects/Response"
 
     export default {
         name: "Response",
         props: {
             response: {
-                type: Response,
+                type: OResponse,
                 required: true
             }
         },

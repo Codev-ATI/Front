@@ -1,15 +1,16 @@
 <template>
     <md-card id="card_player" class="div-round card-center">
         <md-card-header class="md-layout">
-            <md-icon class="md-layout-item md-size-5">grade</md-icon>
+            <md-icon class="md-layout-item md-size-5" v-if="index == 0">emoji_events</md-icon>
+            <span class="md-layout-item md-size-5" v-if="index != 0" />
 
             <md-content id="content_pseudo" class="md-layout-item md-size-90">
                 {{ getPseudoField() }}
             </md-content>
 
-            <md-content class="md-layout-item md-size-5">
+            <span class="md-layout-item md-size-5">
                 {{ player.score }}
-            </md-content>
+            </span>
         </md-card-header>
     </md-card>
 </template>
@@ -24,6 +25,10 @@
             player: {
                 required: true,
                 type: Player
+            },
+            index: {
+                required: true,
+                type: Number
             }
         },
         methods: {
