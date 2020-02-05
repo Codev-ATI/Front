@@ -38,7 +38,7 @@
             </div>
 
             <div class="div_button">
-                <md-button class="button button-round md-accent md-raised" @click="pret">
+                <md-button class="button button-round md-accent md-raised" @click="pret" :disabled="ready">
                     Prêt !
                 </md-button>
 
@@ -66,7 +66,8 @@
             this.$bus.$off("onQuestion");
         },
         data: () => ({
-            players: RoomService.instance.players
+            players: RoomService.instance.players,
+            ready: false
         }),
         computed: {
             getRoomID() {
@@ -79,6 +80,7 @@
             },
 
             pret() {
+                this.ready = true;
                 RoomService.instance.setReady();
             }
         }

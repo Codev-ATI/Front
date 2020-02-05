@@ -63,6 +63,7 @@ class RoomService {
         WebsocketService.instance.onPlayers = this.onPlayers;
         WebsocketService.instance.onQuestion = this.onQuestion;
         WebsocketService.instance.onStats = this.onStats;
+        WebsocketService.instance.onAnswer = this.onAnswer;
 
         return true;
     }
@@ -83,7 +84,7 @@ class RoomService {
         question.text = message.question;
 
         for (const rep of message.answers) {
-            let reponse = new Response();
+            let reponse = new Response(null);
             reponse.text = rep.answer;
             reponse.id = rep.index;
 
@@ -104,8 +105,17 @@ class RoomService {
         Vue.prototype.$bus.$emit("onStats", stats);
     }
 
+    static onAnswer(message) {
+        // le message est l'id de la reponse
+        Vue.prototype.$bus.$emit("onAnswer", message);
+    }
+
     setReady() {
         WebsocketService.instance.sendReady();
+    }
+
+    sendResponse(questionId, responseId) {
+        WebsocketService.instance.sendResponse(questionId, responseId);
     }
 }
 

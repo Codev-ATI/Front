@@ -18,7 +18,7 @@
 
                 <md-content class="md-layout-item md-size-15 md-accent md-subheading">
                     <span class="helper" />
-                    <span>5 secondes</span>
+                    <span>{{ time }} secondes</span>
                 </md-content>
             </md-card-header>
         </md-card>
@@ -38,14 +38,24 @@
         mounted() {
             this.$bus.$on("onQuestion", (question) => {
                 this.question = question;
+
+                if (this.timer != null) window.clearInterval(this.timer);
+                this.time = 30;
+                this.timer = window.setInterval(this.timerTick, 1000);
             });
 
             this.$bus.$once("onStats", (stats) => {
-                return stats;
-               // this.$router.push({ name: "stats", params: { stats: stats } })
+               // return stats;
+                this.$router.push({ name: "stats", params: { stats: stats } })
+            });
+
+            this.$bus.$on("clickReponse", (reponse) => {
+                RoomService.instance.sendResponse(this.question.id, reponse.id);
             });
 
             this.question = this.firstQuestion;
+
+            this.timer = window.setInterval(this.timerTick, 1000);
         },
         props: {
             firstQuestion: {
@@ -55,11 +65,20 @@
         },
         data: () => ({
             question: null,
-            quiz: RoomService.instance.quiz
+            quiz: RoomService.instance.quiz,
+            timer: null,
+            time: 30
         }),
+        methods: {
+            timerTick() {
+                if (this.time > 0) this.time--;
+                else window.clearInterval(this.timer);
+            }
+        },
         beforeDestroy() {
             this.$bus.$off("onQuestion");
             this.$bus.$off("onStats");
+            this.$bus.$off("clickReponse");
         }
     }
 </script>

@@ -7,7 +7,7 @@
         </md-card>
 
         <div class="md-layout">
-            <Response v-for="response of question.reponses" :key="response.text" :response="response" class="md-layout-item" />
+            <Response v-for="response in question.reponses" :key="question.id + '_' + response.id" :response="response" class="md-layout-item" />
         </div>
     </div>
 </template>

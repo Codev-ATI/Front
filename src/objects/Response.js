@@ -2,7 +2,7 @@ class Response {
     constructor(correct) {
         this.text = '';
         this.correct = correct;
-        this.is = null;
+        this.id = null;
     }
 
     isValid() {

@@ -49,17 +49,17 @@ class WebsocketService {
         this.stompClient.connect({}, () => {
             this.topic = this.stompClient.subscribe('/topic/players/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onPlayers != null) WebsocketService.instance.onPlayers(JSON.parse(message.body));
-                console.log(message);
+                //console.log(message);
             });
 
             this.topic = this.stompClient.subscribe('/topic/questions/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onQuestion != null) WebsocketService.instance.onQuestion(JSON.parse(message.body));
-                console.log(message);
+                //console.log(message);
             });
 
             this.topic = this.stompClient.subscribe('/topic/answers/' + this.roomId, function (message) {
                 if (WebsocketService.instance.onAnswer != null) WebsocketService.instance.onAnswer(JSON.parse(message.body));
-                console.log(message);
+                //console.log(message);
             });
 
             this.topic = this.stompClient.subscribe('/topic/stats/' + this.roomId, function (message) {
@@ -77,6 +77,10 @@ class WebsocketService {
 
     sendReady() {
         this.stompClient.send("/app/rooms/ready/" + this.roomId, this.userId, {});
+    }
+
+    sendResponse(questionId, responseId) {
+        this.stompClient.send("/app/rooms/answer/" + this.roomId, JSON.stringify({ id: this.userId, questionId: questionId, answer: responseId }), {});
     }
 }
 
