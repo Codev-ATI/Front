@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 //Vue.prototype.host = "http://localhost:8080";
-Vue.prototype.host = "https://qati.herokuapp.com";
+Vue.prototype.host = "https://qati-ws.herokuapp.com";
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
