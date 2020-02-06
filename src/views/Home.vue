@@ -14,8 +14,8 @@
 
     <div id="div_text" class="div-round md-elevation-4">
       <span class="md-body-2">
-        Répondez sans limite à de nombreux quizs ! Rejoignez ou créez directement une partie en cliquant sur "JOUER !"<br>
-        Connectez-vous ou créez-vous un compte pour créer vos propres quizs !
+        Répondez sans limite à de nombreux quiz ! Rejoignez ou créez directement une partie en cliquant sur "JOUER !"<br>
+        Connectez-vous ou créez-vous un compte pour créer vos propres quiz !
       </span>
     </div>
   </div>
