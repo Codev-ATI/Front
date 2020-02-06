@@ -3,19 +3,19 @@
     <div id="div_main" class="div-round md-elevation-4">
       <md-card id="card_titre" class="card-title md-accent">
         <md-card-header class="md-title">
-          Bienvenue sur le site
+          Bienvenue sur
         </md-card-header>
       </md-card>
 
       <div id="div_logo">
-        <img src="../assets/qati_logo.png">
+        <img id="image" src="../assets/qati_logo.png">
       </div>
     </div>
 
     <div id="div_text" class="div-round md-elevation-4">
       <span class="md-body-2">
-        Répondez sans limites à de nombreux quizz ! Rejoingnez ou créez directement une partie en cliquant sur "JOUER !"<br>
-        Connectez-vous ou créez-vous un compte pour consulter votre historique, ou créer vos propres quizz !
+        Répondez sans limite à de nombreux quizs ! Rejoignez ou créez directement une partie en cliquant sur "JOUER !"<br>
+        Connectez-vous ou créez-vous un compte pour créer vos propres quizs !
       </span>
     </div>
   </div>
@@ -52,6 +52,10 @@ export default {
 
   #div_logo {
     text-align: center;
+  }
+
+  #image {
+    width: 60%;
   }
 
 
