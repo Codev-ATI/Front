@@ -19,11 +19,7 @@
         },
         mounted() {
             this.$bus.$once("clickReponse", this.onClickResponse);
-
-            this.$bus.$once("onAnswer", (id) => {
-                if (this.response.id == id) this.response.correct = true;
-                else this.response.correct = false;
-            });
+            this.$bus.$once("onAnswer", this.onAnswer);
         },
         data: () => ({
             clicked: false,
@@ -51,11 +47,15 @@
             },
             onClickResponse() {
                 this.another = true;
+            },
+            onAnswer(id) {
+                if (this.response.id == id) this.response.correct = true;
+                else this.response.correct = false;
             }
         },
         beforeDestroy() {
             this.$bus.$off("clickReponse", this.onClickResponse);
-            this.$bus.$off("onAnswer");
+            this.$bus.$off("onAnswer", this.onAnswer);
         }
     }
 </script>

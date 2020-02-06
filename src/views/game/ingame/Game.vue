@@ -45,8 +45,15 @@
             });
 
             this.$bus.$once("onStats", (stats) => {
-               // return stats;
                 this.$router.push({ name: "stats", params: { stats: stats } })
+            });
+
+            this.$bus.$on("onAnswer", () => {
+                if (this.timer != null) {
+                    window.clearInterval(this.timer);
+                    this.timer = null;
+                    this.time = 0;
+                }
             });
 
             this.$bus.$on("clickReponse", (reponse) => {
@@ -79,6 +86,7 @@
             this.$bus.$off("onQuestion");
             this.$bus.$off("onStats");
             this.$bus.$off("clickReponse");
+            this.$bus.$off("onAnswer");
         }
     }
 </script>

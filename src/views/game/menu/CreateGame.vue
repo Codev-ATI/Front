@@ -10,17 +10,19 @@
             </md-content>
         </div>
 
-        <div id="div_pager" class="pager">
-            <md-button id="button_left" class="pager md-icon-button md-raised md-accent">
+        <div id="div_pager">
+            <md-button class="md-icon-button md-accent md-raised" @click="previous" :disabled="page == 0">
                 <md-icon>chevron_left</md-icon>
             </md-button>
 
-            <div class="pager">
-                <span class="helper" />
-                <md-content>{{ page + 1 }}</md-content>
-            </div>
+            <span>
+                <md-button class="md-accent" @click="firstPage">
+                    {{ page + 1 }}
+                </md-button>
+                <md-tooltip md-direction="bottom">Revenir à la première page</md-tooltip>
+            </span>
 
-            <md-button id="button_right" class="pager md-icon-button md-raised md-accent">
+            <md-button class="md-icon-button md-accent md-raised" @click="next">
                 <md-icon>chevron_right</md-icon>
             </md-button>
         </div>
@@ -44,13 +46,43 @@
         },
         data: () => ({
             page: 0,
-            quizs: null
+            quizs: null,
+            loading: false
         }),
         methods: {
             choose(quiz) {
                 if (quiz != null) {
                     this.$router.push({ name: "choosepseudo", params: { quiz: quiz } });
                 }
+            },
+
+            previous() {
+                if (this.page == 0) return;
+
+                this.updatePage(this.page - 1);
+            },
+
+            next() {
+                this.updatePage(this.page + 1);
+            },
+
+            firstPage() {
+                if (this.page == 0) return;
+                this.updatePage(0);
+            },
+
+            async updatePage(page) {
+                if (this.loading) return;
+
+                this.loading = true;
+
+                let quizs = await GameService.getGames(page, 10);
+                if (quizs.length > 0) {
+                    this.quizs = quizs;
+                    this.page = page;
+                }
+
+                this.loading = false;
             }
         }
     }
@@ -107,16 +139,11 @@
     }
 
     #div_pager {
-        text-align: center;
-        margin-top: 1%;
         width: 50%;
         margin-left: 25%;
-    }
+        text-align: center;
 
-    .pager {
-        display: inline-block;
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-top: 1%;
     }
 
 </style>
