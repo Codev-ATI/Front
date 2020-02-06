@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="div_join" class="div-round">
+        <div id="div_join" class="div-round md-elevation-4">
             <md-card id="card_join" class="card-title md-accent">
                 <md-card-header class="md-title" v-if="quiz != null">
                     Créer une partie
@@ -20,7 +20,9 @@
                             Choisissez un pseudo
                         </span>
 
-                        <input type="text" class="md-layout-item input md-elevation-8 md-size-60" maxlength="10" v-model="pseudo" />
+                        <span class="md-layout-item md-size-10" />
+
+                        <input type="text" class="md-layout-item input md-elevation-8 md-size-50" maxlength="10" v-model="pseudo" />
                     </div>
                 </md-card-content>
             </md-card>
@@ -36,6 +38,8 @@
             </div>
         </div>
 
+        <LoadingBar v-if="showLoading" />
+
         <md-snackbar md-position="center" :md-duration="Infinity" :md-active.sync="showSnackbar">
             <span>Aucune partie avec l'ID '{{ this.gameID }}'</span>
             <md-button class="md-primary" @click="$router.push('/playgame')">Retour</md-button>
@@ -47,9 +51,11 @@
     import Quiz from "../../../objects/Quiz";
     import RoomService from "../../../services/RoomService";
     import AuthService from "../../../services/AuthService";
+    import LoadingBar from "../../../components/LoadingBar";
 
     export default {
         name: "ChoosePseudo",
+        components: {LoadingBar},
         mounted() {
             if (this.gameID == null && this.quiz == null) {
                 this.$router.push('/playgame');
@@ -87,7 +93,7 @@
         },
         data: () => ({
             pseudo: null,
-            showLoading: true,
+            showLoading: false,
             showSnackbar: false
         }),
         methods: {
@@ -102,7 +108,7 @@
                     this.$router.push("/waitingroom");
                 }
 
-                //this.showLoading = false;
+                this.showLoading = false;
             },
 
             async creer() {
@@ -113,19 +119,12 @@
                 this.$router.push("/waitingroom");
 
                 this.showLoading = false;
-            },
-
-            closed() {
-                console.log("closed");
             }
-        },
-        destroyed() {
         }
     }
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #div_join, #div_create {
         width: 60%;

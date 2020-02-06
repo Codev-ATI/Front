@@ -15,3 +15,7 @@
     components: {NavBar}
   }
 </script>
+
+<style lang="scss">
+  @import "assets/theme";
+</style>

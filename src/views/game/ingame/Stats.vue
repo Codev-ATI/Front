@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="div_stats" class="div-round">
+        <div id="div_stats" class="div-round md-elevation-4">
             <md-card id="card_titre" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Résultats
@@ -77,7 +77,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #div_stats, #div_create {
         width: 60%;

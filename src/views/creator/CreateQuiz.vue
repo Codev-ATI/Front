@@ -4,7 +4,7 @@
             <span>Créateur de quiz</span>
         </md-content>
 
-        <md-content id="content_titre" class="card md-primary md-layout">
+        <md-content id="content_titre" class="card md-primary md-layout md-elevation-4">
             <md-content id="content_text_titre" class="md-primary md-layout-item md-size-15 md-title">
                 Titre
             </md-content>
@@ -69,7 +69,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../assets/theme";
 
     #content_createur {
         width: 70%;

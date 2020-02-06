@@ -84,7 +84,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #icon_chrono {
         color: white;

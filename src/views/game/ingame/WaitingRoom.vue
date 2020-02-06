@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="div_salle" class="div-round">
+        <div id="div_salle" class="div-round md-elevation-4">
             <md-card id="card_salle" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Salle d'attente
@@ -117,7 +117,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #div_salle, #div_create {
         width: 60%;

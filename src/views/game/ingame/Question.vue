@@ -1,5 +1,5 @@
 <template>
-    <div id="main_div" class="card-center div-round">
+    <div id="main_div" class="card-center div-round md-elevation-4">
         <md-card id="card_question" class="card-title md-accent">
             <md-card-header class="md-title">
                 {{ question.text }}
@@ -30,7 +30,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #main_div {
         padding-bottom: 1%;

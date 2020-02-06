@@ -1,60 +1,86 @@
 <template>
     <div>
-        <div id="div_main" class="div-round">
+        <div id="div_main" class="div-round md-elevation-4">
             <md-card id="card_titre" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Inscription
                 </md-card-header>
             </md-card>
 
-            <md-card id="card_pseudo" class="card-left md-accent">
-                <md-card-content>
-                    <div class="md-layout div_input">
-                        <md-icon class="icon">person</md-icon>
+            <md-card class="card-left md-accent">
+                <md-card-header>
+                    <div class="md-layout">
+                        <span class="md-layout-item md-size-10" />
 
-                        <span class="md-accent md-layout-item">
+                        <md-icon class="icon md-layout-item md-size-15">person</md-icon>
+
+                        <md-content class="md-accent md-layout-item md-size-25">
                             Pseudo
-                        </span>
+                        </md-content>
 
-                        <input type="text" class="md-layout-item input md-elevation-8" v-model="pseudo" />
+                        <span class="md-layout-item md-size-5" />
+
+                        <input type="text" class="md-layout-item input md-elevation-8 md-size-35" v-model="pseudo" />
+
+                        <span class="md-layout-item md-size-10" />
                     </div>
-                </md-card-content>
+                </md-card-header>
             </md-card>
 
-            <md-card id="card_email" class="card-right md-accent">
-                <md-card-content>
-                    <div class="md-layout div_input">
-                        <md-icon class="icon">email</md-icon>
+            <md-card class="card-right md-accent">
+                <md-card-header>
+                    <div class="md-layout">
+                        <span class="md-layout-item md-size-10" />
 
-                        <span class="md-accent md-layout-item">
+                        <md-icon class="icon md-layout-item md-size-15">email</md-icon>
+
+                        <md-content class="md-accent md-layout-item md-size-25">
                             Adresse mail
-                        </span>
+                        </md-content>
 
-                        <input type="text" class="md-layout-item input md-elevation-8" v-model="mail" />
+                        <span class="md-layout-item md-size-5" />
+
+                        <input type="text" class="md-layout-item input md-elevation-8 md-size-35" v-model="mail" />
+
+                        <span class="md-layout-item md-size-10" />
                     </div>
-                </md-card-content>
+                </md-card-header>
             </md-card>
 
-            <md-card id="card_motdepasse" class="card md-accent">
-                <md-card-content>
-                    <div class="md-layout div_input">
-                        <md-icon class="icon">vpn_key</md-icon>
+            <md-card class="card md-accent">
+                <md-card-header>
+                    <div class="md-layout">
+                        <span class="md-layout-item md-size-10" />
 
-                        <span class="md-accent md-layout-item">
+                        <md-icon class="icon md-layout-item md-size-15">vpn_key</md-icon>
+
+                        <md-content class="md-accent md-layout-item md-size-25">
                             Mot de passe
-                        </span>
+                        </md-content>
 
-                        <input type="password" class="md-layout-item input md-elevation-8" v-model="password1" />
+                        <span class="md-layout-item md-size-5" />
+
+                        <input type="password" class="md-layout-item input md-elevation-8 md-size-35" v-model="password1" />
+
+                        <span class="md-layout-item md-size-10" />
                     </div>
+                </md-card-header>
 
-                    <div class="md-layout div_input">
-                        <md-icon class="icon">vpn_key</md-icon>
+                <md-card-content>
+                    <div class="md-layout">
+                        <span class="md-layout-item md-size-10" />
 
-                        <span class="md-accent md-layout-item">
+                        <md-icon class="icon md-layout-item md-size-15">vpn_key</md-icon>
+
+                        <md-content class="md-accent md-layout-item md-size-25">
                             Confirmation
-                        </span>
+                        </md-content>
 
-                        <input type="password" class="md-layout-item input md-elevation-8" v-model="password2" />
+                        <span class="md-layout-item md-size-5" />
+
+                        <input type="password" class="md-layout-item input md-elevation-8 md-size-35" v-model="password2" />
+
+                        <span class="md-layout-item md-size-10" />
                     </div>
                 </md-card-content>
             </md-card>
@@ -132,7 +158,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../assets/theme";
 
     #div_main {
         width: 60%;
@@ -142,10 +167,6 @@
 
     #card_titre {
         margin-top: 5%;
-    }
-
-    .md-title {
-        text-align: center;
     }
 
     .div_input {

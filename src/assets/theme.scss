@@ -17,7 +17,7 @@ $secondary: #ce7f12;
 
   &-round{
     @extend .div;
-    border-radius: 20px;
+    border-radius: 20px !important;
   }
 }
 
@@ -28,7 +28,7 @@ $secondary: #ce7f12;
 
   &-round {
     @extend .button;
-    border-radius: 10px;
+    border-radius: 10px !important;
   }
 }
 
@@ -36,22 +36,22 @@ $secondary: #ce7f12;
 .card {
   width: 80%;
   margin: 2% 10%;
-  border-radius: 20px;
+  border-radius: 20px !important;
 
   &-right {
-    @extend  .card;
+    @extend .card;
     margin-right: 20%;
     margin-left: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 
   &-left {
-    @extend  .card;
+    @extend .card;
     margin-left: 20%;
     margin-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 
   &-center {
@@ -67,15 +67,15 @@ $secondary: #ce7f12;
     margin: 0;
     width: 100%;
 
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 }
 
 //inputs
 .input {
   border-style: none;
-  border-radius: 2px;
+  border-radius: 2px !important;
   text-align: center;
   color: $accent;
 }
@@ -93,4 +93,8 @@ $secondary: #ce7f12;
   display: inline-block;
   height: 100%;
   vertical-align: middle;
+}
+
+.md-title, .md-accent, .md-primary {
+  text-align: center;
 }

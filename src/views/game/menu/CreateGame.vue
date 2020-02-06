@@ -1,10 +1,12 @@
 <template>
     <div>
-        <div id="main_div" class="div-round">
+        <div id="main_div" class="div-round md-elevation-4">
             <md-content id="div_list" class="md-scrollbar div-round">
-                <div id="list">
+                <div id="list" v-if="quizs != null">
                     <Quiz v-for="quiz in quizs" :key="quiz.id" :quiz="quiz" />
                 </div>
+
+                <LoadingBar v-if="quizs == null" />
             </md-content>
         </div>
 
@@ -28,10 +30,11 @@
 <script>
     import GameService from "../../../services/GameService";
     import Quiz from "./Quiz";
+    import LoadingBar from "../../../components/LoadingBar";
 
     export default {
         name: "CreateGame",
-        components: {Quiz},
+        components: {LoadingBar, Quiz},
         async mounted() {
             this.quizs = await GameService.getGames(this.page, 10);
             this.$bus.$once("chooseQuiz", (quiz) => this.choose(quiz));
@@ -41,7 +44,7 @@
         },
         data: () => ({
             page: 0,
-            quizs: []
+            quizs: null
         }),
         methods: {
             choose(quiz) {

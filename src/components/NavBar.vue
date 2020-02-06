@@ -1,18 +1,20 @@
 <template>
     <div>
         <md-app class="md-elevation-5">
-            <md-app-toolbar id="toolbar" class="md-primary md-layout">
-                <div class="md-layout-item md-size-33">
+            <md-app-toolbar class="md-primary md-layout">
+                <div class="md-toolbar-section-start md-layout-item md-size-33">
                     <md-button id="button_logo" to="home">
                       <img id="img_logo" src="../assets/qati_logo.png" />
                     </md-button>
                 </div>
 
-                <md-button id="button_rejoindre" class="md-raised md-layout-item" to="playgame">
-                    Jouer !
-                </md-button>
+                <div class="md-layout-item md-size-33">
+                    <md-button id="button_rejoindre" class="md-raised" to="playgame">
+                        Jouer !
+                    </md-button>
+                </div>
 
-                <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="!isConnected">
+                <div class="md-toolbar-section-end md-layout-item" v-if="!isConnected">
                     <md-button class="md-raised md-accent" to="register">
                         Inscription
                     </md-button>
@@ -22,7 +24,7 @@
                     </md-button>
                 </div>
 
-                <div class="md-toolbar-section-end md-layout-item md-size-33" v-if="isConnected">
+                <div class="md-toolbar-section-end md-layout-item" v-if="isConnected">
                     <md-button class="md-raised md-accent" to="createquiz">
                         Créer un quizz
                     </md-button>
@@ -66,20 +68,15 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
 
     #button_logo {
-        text-align: center;
-        vertical-align: middle;
         width: 20%;
         height: 40%;
     }
 
     #button_rejoindre {
         background-color: white;
-
-        margin-left: 5%;
-        margin-right: 5%;
+        width: 80%;
     }
 
 </style>

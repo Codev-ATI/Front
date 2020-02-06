@@ -1,6 +1,6 @@
 <template>
     <div id="div_loading">
-        <md-progress-bar class="md-primary" md-mode="indeterminate"></md-progress-bar>
+        <md-progress-spinner class="md-accent" :md-diameter="50" :md-stroke="6" md-mode="indeterminate"></md-progress-spinner>
     </div>
 </template>
 
@@ -11,11 +11,9 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/theme";
 
     #div_loading {
-        width: 40%;
-        margin-top: 2%;
-        margin-left: 30%;
+        text-align: center;
+        margin: 2% auto auto;
     }
 </style>

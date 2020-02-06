@@ -36,7 +36,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #div_quiz {
         text-align: center;

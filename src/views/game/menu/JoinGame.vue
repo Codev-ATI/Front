@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="div_join" class="div-round">
+        <div id="div_join" class="div-round md-elevation-4">
             <md-card id="card_join" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Rejoindre une partie
@@ -33,7 +33,7 @@
         </div>
 
 
-        <div id="div_create" class="div-round">
+        <div id="div_create" class="div-round md-elevation-4">
             <md-card id="card_create" class="card-title md-accent">
                 <md-card-header class="md-title">
                     Créer une partie
@@ -75,7 +75,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../../assets/theme";
 
     #div_join, #div_create {
         width: 60%;
