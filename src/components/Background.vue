@@ -15,7 +15,7 @@
     #background {
         position: fixed;
         bottom: 0;
-        z-index: -1;
+        z-index: -2;
     }
 
 </style>
