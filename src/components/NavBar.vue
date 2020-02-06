@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="md-layout-item md-size-33">
-                    <md-button id="button_rejoindre" class="md-raised" to="playgame">
+                    <md-button id="button_rejoindre" class="md-raised md-accent" to="playgame">
                         Jouer !
                     </md-button>
                 </div>
@@ -82,6 +82,7 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../assets/theme";
 
     #button_logo {
         width: 20%;
@@ -89,7 +90,7 @@
     }
 
     #button_rejoindre {
-        background-color: white;
+        background-color: #7d7039;
         width: 80%;
     }
 
