@@ -6,6 +6,10 @@
                     <md-button id="button_logo" to="home">
                       <img id="img_logo" src="../assets/qati_logo.png" />
                     </md-button>
+
+                    <md-content v-if="isConnected" class="md-primary md-title">
+                        {{ getPseudo() }}
+                    </md-content>
                 </div>
 
                 <div class="md-layout-item md-size-33">
@@ -51,6 +55,8 @@
             this.$bus.$on("disconnected", () => {
                 this.isConnected = false;
             });
+
+            AuthService.forceCheckToken();
         },
         data: () => ({
             isConnected: AuthService.hasToken()
@@ -62,7 +68,15 @@
                 if (this.$router.currentRoute != "/home") {
                     this.$router.push("/home");
                 }
+            },
+
+            getPseudo() {
+                return AuthService.getPseudo();
             }
+        },
+        beforeDestroy() {
+            this.$bus.$off("connected");
+            this.$bus.$off("disconnected");
         }
     }
 </script>

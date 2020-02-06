@@ -42,8 +42,6 @@ const SixNezService = {
                 window.localStorage.setItem("token", response.data.token);
                 Vue.prototype.$bus.$emit("connected");
 
-                window.localStorage.setItem("pseudo", response.data.pseudo);
-
                 return true;
             }
         }, error => {
@@ -60,37 +58,27 @@ const SixNezService = {
     },
 
     getPseudo() {
-        var pseudo = window.localStorage.getItem("pseudo");
-        if (pseudo == null) return null;
+        var token = window.localStorage.getItem("token");
+        if (token == null) return null;
 
-        return pseudo;
+        return JSON.parse(atob(token.split(".")[1])).sub;
     },
 
     async forceCheckToken() {
         var token = window.localStorage.getItem("token");
         if (token == null) return false;
 
-        /*
-        return await axios({
-            method: "GET",
-            url: "/film",
-            headers: {
-                'Authorization': "Bearer " + token,
-            }
-        }).catch(error => {
-            if (error == undefined || error.message === "Network Error") {
-                window.localStorage.removeItem("token")
-                return false
-            } else return true;
-        });*/
+        let timeSeconds = JSON.parse(atob(token.split(".")[1])).exp;
 
+        if (timeSeconds * 1000 > new Date().getTime()) return true;
+
+        this.disconnect();
         return false;
     },
 
     disconnect() {
         if (window.localStorage.getItem("token") != null) {
             window.localStorage.removeItem("token");
-            window.localStorage.removeItem("pseudo");
             Vue.prototype.$bus.$emit("disconnected");
         }
     }
